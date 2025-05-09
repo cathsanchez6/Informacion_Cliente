@@ -354,6 +354,20 @@
     }
   });
 </script>
+  <script>
+  window.onload = function () {
+    fetch("https://script.google.com/macros/s/AKfycb.../exec") // <-- tu URL aquí
+      .then(response => response.text())
+      .then(codigo => {
+        document.getElementById("codigoResultado").textContent = codigo;
+      })
+      .catch(error => {
+        console.error("Error al generar código:", error);
+        document.getElementById("codigoResultado").textContent = "Error al cargar";
+      });
+  };
+</script>
+
 
 </body>
 </html>
