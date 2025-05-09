@@ -188,14 +188,11 @@
         <div class="contenedor-marco1">
           <div class="contenedor">
             <div class="header">
-              <i class="fas fa-users"></i>
-              <label>Logo de la empresa</label>
-            </div>
-            <label style="font-size: 12px; color: #787E87;">JPG o PNG. Tamaño máximo 4MB</label>
-            <div class="header">
-              <button style="background-color: #349800;">
-                <i class="fa fa-cloud-upload"></i> Cargar imagen
-              </button>
+              <form id="logoForm">
+                <label>Logo de la empresa:</label><br>
+                <input type="file" id="logoInput" accept="image/png, image/jpeg"><br><br>
+                <button type="submit" style="background-color:#349800; color:white;">Cargar imagen</button>
+              </form>
               <button style="background-color: #dc3545;">
                 <i class="fa fa-trash"></i> Eliminar
               </button>
