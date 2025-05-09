@@ -190,7 +190,7 @@
             <div class="header">
               <form id="logoForm">
                 <label>Logo de la empresa:</label><br>
-                <input type="file" id="logoInput" accept="image/png, image/jpeg"><br><br>
+                <input type="file" id="logoInput" accept="image/png, image/jpeg" required><br><br>
                 <button type="submit" style="background-color:#349800; color:white;">Cargar imagen</button>
               </form>
               <button style="background-color: #dc3545;">
@@ -285,6 +285,34 @@
     function removeRow(btn) {
       btn.parentElement.remove();
     }
+  </script>
+  <script>
+    document.getElementById("logoForm").addEventListener("submit", async function (e) {
+      e.preventDefault();
+      const fileInput = document.getElementById("logoInput");
+      const file = fileInput.files[0];
+
+      if (!file) {
+        alert("Por favor selecciona un archivo.");
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append("logo", file);
+
+      try {
+        const response = await fetch("https://script.google.com/macros/s/AKfycbyBX7Lwj29ugmuEoWSfcBSsrEaPcheUGEdI99lSNz9aKo3toUV2fsgv-iI7vXPwEXFx/exec", {
+          method: "POST",
+          body: formData
+        });
+
+        const result = await response.text();
+        alert(result);
+      } catch (error) {
+        alert("Error al subir el logo.");
+        console.error(error);
+      }
+    });
   </script>
   <script>
   const webAppURL = "https://script.google.com/macros/s/AKfycbX.../exec"; // Pega aquí tu URL
