@@ -2,51 +2,86 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Formulario</title>
+  <title>Formulario con Diseño</title>
   <style>
-    .campo {
-      font-weight: bold;
-      margin: 10px 0;
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
     }
-    .input-group {
+
+    .contenedor {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .columna {
+      flex: 1 1 45%;
+      min-width: 300px;
+      border: 1px solid #ccc;
+      padding: 15px;
+      border-radius: 8px;
+      background: #f9f9f9;
+    }
+
+    .campo {
       margin-bottom: 15px;
     }
+
+    .campo label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
+    }
+
     .btn {
-      padding: 8px 12px;
-      margin-right: 10px;
+      margin-top: 10px;
+      padding: 6px 12px;
       cursor: pointer;
+    }
+
+    #archivoCargado {
+      margin-top: 10px;
     }
   </style>
 </head>
 <body>
-  <div class="campo">Código de solicitud: <span id="codigoResultado">Cargando...</span></div>
 
-  <div class="input-group">
-    <label for="logoInput">Subir Logo:</label>
-    <input type="file" id="logoInput" accept="image/*">
-    <div id="archivoCargado">
-      <span id="archivoNombre">Ningún archivo cargado</span>
-      <button class="btn" id="verBtn" style="display:none">Ver</button>
-      <button class="btn" id="descargarBtn" style="display:none">Descargar</button>
-      <button class="btn" id="eliminarBtn" style="display:none">Eliminar</button>
+  <h2>Formulario con dos columnas</h2>
+
+  <div class="contenedor">
+    <!-- Columna izquierda -->
+    <div class="columna">
+      <div class="campo">
+        <label>Código de solicitud:</label>
+        <span id="codigoResultado">Cargando...</span>
+      </div>
+
+      <div class="campo">
+        <label>Dirección:</label>
+        <input type="text" id="direccion" />
+        <button class="btn" id="agregarDireccionBtn">Agregar dirección</button>
+        <div id="direccionesExtras"></div>
+      </div>
+    </div>
+
+    <!-- Columna derecha -->
+    <div class="columna">
+      <div class="campo">
+        <label>Logo de la empresa:</label>
+        <input type="file" id="logoInput" accept="image/*" />
+        <div id="archivoCargado">
+          <span id="archivoNombre">Ningún archivo cargado</span><br />
+          <button class="btn" id="verBtn" style="display:none">Ver</button>
+          <button class="btn" id="descargarBtn" style="display:none">Descargar</button>
+          <button class="btn" id="eliminarBtn" style="display:none">Eliminar</button>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div class="input-group">
-    <label for="direccion">Dirección:</label>
-    <input type="text" id="direccion" placeholder="Ingrese la dirección" />
-    <button class="btn" id="agregarDireccionBtn">Agregar dirección</button>
-  </div>
-
-  <!-- Aquí se agregarán las direcciones extra -->
-  <div id="direccionesExtras"></div>
-
   <script>
-    let archivoLogo = null;
-    let urlLogo = null;
-
-    // Función para generar el código de solicitud desde Google Sheets
+    // Generar código de solicitud desde Web App
     window.onload = function () {
       fetch("https://script.google.com/macros/s/TU_WEB_APP_URL/exec") // Reemplaza con tu URL real
         .then(response => response.text())
@@ -59,16 +94,18 @@
         });
     };
 
-    // Logo: selección y carga
+    // Manejo de logo
     const logoInput = document.getElementById("logoInput");
     const archivoNombre = document.getElementById("archivoNombre");
     const verBtn = document.getElementById("verBtn");
     const descargarBtn = document.getElementById("descargarBtn");
     const eliminarBtn = document.getElementById("eliminarBtn");
 
+    let archivoLogo = null;
+    let urlLogo = null;
+
     logoInput.addEventListener("change", function () {
       archivoLogo = this.files[0];
-
       if (archivoLogo) {
         archivoNombre.textContent = archivoLogo.name;
         verBtn.style.display = "inline-block";
@@ -91,7 +128,7 @@
       if (urlLogo) {
         const a = document.createElement("a");
         a.href = urlLogo;
-        a.download = archivoLogo.name;
+        a.download = archivoLogo.name || "logo_empresa.png";
         a.click();
       }
     });
@@ -106,21 +143,20 @@
       eliminarBtn.style.display = "none";
     });
 
-    // Botón para agregar direcciones
+    // Agregar direcciones adicionales
     const agregarDireccionBtn = document.getElementById("agregarDireccionBtn");
     const direccionesExtras = document.getElementById("direccionesExtras");
 
     agregarDireccionBtn.addEventListener("click", () => {
-      const nuevaDireccion = document.createElement("div");
-      nuevaDireccion.classList.add("input-group");
-      nuevaDireccion.innerHTML = `
+      const div = document.createElement("div");
+      div.innerHTML = `
         <input type="text" placeholder="Otra dirección">
         <button class="btn eliminarDireccion">Eliminar</button>
       `;
-      direccionesExtras.appendChild(nuevaDireccion);
+      direccionesExtras.appendChild(div);
 
-      nuevaDireccion.querySelector(".eliminarDireccion").addEventListener("click", () => {
-        direccionesExtras.removeChild(nuevaDireccion);
+      div.querySelector(".eliminarDireccion").addEventListener("click", () => {
+        direccionesExtras.removeChild(div);
       });
     });
   </script>
