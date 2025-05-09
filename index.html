@@ -220,15 +220,15 @@ h2 {
       <div class="contenedor">
         <h2>Información interna</h2>
         <label>Cantidad de cajas solicitadas</label>
-        <input type="number" placeholder="Ingrese cantidad  de cajas" required>
+        <input type="number" id="cajasInput" placeholder="Ingrese cantidad de cajas" required oninput="actualizarCantidades()">
         <div style="display: flex; gap: 10px;">
           <div style="flex: 1; background-color: #eeeeee; border-radius: 10px; padding: 10px;">
             <div style="font-size: 12px; color: #888;">Cantidad de rollos</div>
-            <div style="font-weight: bold; font-size: 18px;">120</div>
+            <div id="rollosOutput" style="font-weight: bold; font-size: 18px;">0</div>
           </div>
           <div style="flex: 1; background-color: #eeeeee; border-radius: 10px; padding: 10px;">
             <div style="font-size: 12px; color: #888;">Cantidad de seriales</div>
-            <div style="font-weight: bold; font-size: 18px;">42840</div>
+            <div id="serialesOutput" style="font-weight: bold; font-size: 18px;">0</div>
           </div>
         </div>
       </div>
@@ -378,7 +378,7 @@ h2 {
 </script>
 
 <script>
-  let contador = 10001;
+  let contador = 00001;
 
   function generarCodigoLocal() {
     const nuevoCodigo = "CI" + contador++;
@@ -430,5 +430,16 @@ h2 {
     a.click();
   }
 </script>
+  <script>
+  function actualizarCantidades() {
+    const cajas = parseInt(document.getElementById('cajasInput').value) || 0;
+    const rollos = cajas * 36;
+    const seriales = cajas * 544;
+
+    document.getElementById('rollosOutput').textContent = rollos;
+    document.getElementById('serialesOutput').textContent = seriales;
+  }
+</script>
+
 </body>
 </html>
