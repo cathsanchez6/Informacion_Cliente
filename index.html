@@ -165,11 +165,16 @@
 
         <!-- Código de Solicitud -->
         <div class="contenedor-marco1">
-          <div class="contenedor">
-            <label style="font-size: 18px;">Código de solicitud</label>
-            <button style="background-color: #00AAE4;">
-              <i class="fas fa-plus-circle"></i> Crear nuevo código
-            </button>
+         <div class="contenedor">
+            <div class="header">
+              <i class="fas fa-barcode"></i>
+              <label>Código de solicitud</label>
+            </div>
+            <div class="campo">
+              <span id="codigoResultado">CI00000</span>
+              <button onclick="generarCodigo()" style="margin-left: 10px; background-color: #007bff; color: white;">
+                Crear nuevo código
+              </button>
             <div class="header">
               <button style="background-color: #787E87;">
                 <i class="fas fa-pen"></i> Editar código existente
@@ -320,7 +325,7 @@
     });
   </script>
   <script>
-  const webAppURL = "https://script.google.com/macros/s/AKfycbX.../exec"; // Pega aquí tu URL
+  const webAppURL = "https://script.google.com/macros/s/AKfycbyBX7Lwj29ugmuEoWSfcBSsrEaPcheUGEdI99lSNz9aKo3toUV2fsgv-iI7vXPwEXFx/exec";
 
   document.getElementById("crearBtn").addEventListener("click", async () => {
     const data = {
@@ -373,6 +378,18 @@
   };
 </script>
 <script>
+  function generarCodigo() {
+  fetch("https://cathsanchez6.github.io/Informacion_Cliente") // tu Web App URL
+    .then(response => response.text())
+    .then(codigo => {
+      document.getElementById("codigoResultado").textContent = codigo;
+    })
+    .catch(error => {
+      console.error("Error generando código:", error);
+      alert("Ocurrió un error al generar el código.");
+    });
+}
+
   let codigoFormulario = "";
   let logoBlob = null;
   let logoNombre = "";
