@@ -163,11 +163,12 @@ h2 {
          <div class="contenedor">
               <div>
                 <label>Código de solicitud:</label>
-                <button onclick="generarCodigoLocal()" style="margin-left: 10px; background-color: #007bff; color: white;">
-                Crear nuevo código
-                <span id="codigoResultado">Cargando...</span>
-              </div>
-              </button>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                  <button type="button" onclick="generarCodigoLocal()" style="background-color: #007bff; color: white;">
+                    Crear nuevo código
+                  </button>
+                  <div id="codigoResultado" style="font-weight: bold;">CI10001</div>
+                </div>
             <div class="header">
               <button style="background-color: #787E87;">
                 <i class="fas fa-pen"></i> Editar código existente
@@ -175,6 +176,8 @@ h2 {
               <div class="form-row">
                 <i class="fas fa-search"></i>
                 <input type="text" placeholder="Digita el código">
+              </div>
+              <input type="hidden" name="codigoSolicitud" id="codigoInput" value="CI10001">
               </div>
             </div>
             <div class="campo">
@@ -375,25 +378,13 @@ h2 {
 </script>
 
 <script>
+  let contador = 10001;
+
   function generarCodigoLocal() {
-    // Obtener el último código del almacenamiento local o inicializar
-    let ultimoCodigo = localStorage.getItem("ultimoCodigo") || "CI1000";
-
-    // Extraer el número, incrementar
-    const numero = parseInt(ultimoCodigo.slice(2)) + 1;
-
-    // Formatear con ceros si deseas (por ejemplo, CI1001)
-    const nuevoCodigo = "CI" + numero.toString().padStart(4, "0");
-
-    // Guardar el nuevo código como el último generado
-    localStorage.setItem("ultimoCodigo", nuevoCodigo);
-
-    // Mostrar en el HTML
+    const nuevoCodigo = "CI" + contador++;
     document.getElementById("codigoResultado").textContent = nuevoCodigo;
+    document.getElementById("codigoInput").value = nuevoCodigo;
   }
-
-  // Llamar al cargar la página
-  window.onload = generarCodigoLocal;
 </script>
   <script>
   // Manejo del logo
