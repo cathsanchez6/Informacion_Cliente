@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulario de Solicitud</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f8f9fa;
+      padding: 20px;
+    }
+
+    .contenedor-principal {
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .contenedor-marco1 {
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      padding: 20px;
+      margin-bottom: 25px;
+    }
+
+    .contenedor {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    label {
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .campo {
+      background-color: #e9ecef;
+      border-radius: 6px;
+      padding: 10px;
+      font-weight: bold;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .form-row input {
+      flex: 1;
+      padding: 8px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 8px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .form-group textarea {
+      height: 80px;
+      resize: vertical;
+    }
+
+    button {
+      padding: 10px 16px;
+      border: none;
+      border-radius: 6px;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .add-btn {
+      background-color: #00AAE4;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .remove-btn {
+      background-color: #dc3545;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 50%;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #ddd;
+      margin: 15px 0;
+    }
+
+    h2 {
+      font-size: 18px;
+      color: #333;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="contenedor-principal">
+
+    <!-- Código de Solicitud -->
+    <div class="contenedor-marco1">
+      <div class="contenedor">
+        <label style="font-size: 18px;">Código de solicitud</label>
+        <button style="background-color: #00AAE4;">
+          <i class="fas fa-plus-circle"></i> Crear nuevo código
+        </button>
+        <div class="header">
+          <button style="background-color: #787E87;">
+            <i class="fas fa-pen"></i> Editar código existente
+          </button>
+          <div class="form-row">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Digita el código">
+          </div>
+        </div>
+        <label style="margin-top: 10px;">Código de solicitud:</label>
+        <div class="campo" id="codigoResultado">CI10001</div>
+      </div>
+    </div>
+
+    <!-- Logo de la empresa -->
+    <div class="contenedor-marco1">
+      <div class="contenedor">
+        <div class="header">
+          <i class="fas fa-users"></i>
+          <label>Logo de la empresa</label>
+        </div>
+        <label style="font-size: 12px; color: #787E87;">JPG o PNG. Tamaño máximo 4MB</label>
+        <div class="header">
+          <button style="background-color: #349800;">
+            <i class="fa fa-cloud-upload"></i> Cargar imagen
+          </button>
+          <button style="background-color: #dc3545;">
+            <i class="fa fa-trash"></i> Eliminar
+          </button>
+        </div>
+        <hr>
+        <label>Archivo cargado</label>
+        <div class="campo">
+          <i class="fa fa-trash" style="margin-left: 10px;"></i>
+          <i class="fa fa-eye" style="margin-left: 10px;"></i>
+          <i class="fa fa-download" style="margin-left: 10px;"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- Información Interna -->
+    <div class="contenedor-marco1">
+      <div class="contenedor">
+        <h2>Información interna</h2>
+        <label>Cantidad de cajas solicitadas</label>
+        <div class="campo">4</div>
+        <div style="display: flex; gap: 10px;">
+          <div style="flex: 1; background-color: #eeeeee; border-radius: 10px; padding: 10px;">
+            <div style="font-size: 12px; color: #888;">Cantidad de rollos</div>
+            <div style="font-weight: bold; font-size: 18px;">120</div>
+          </div>
+          <div style="flex: 1; background-color: #eeeeee; border-radius: 10px; padding: 10px;">
+            <div style="font-size: 12px; color: #888;">Cantidad de seriales</div>
+            <div style="font-weight: bold; font-size: 18px;">42840</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Información Landing Page -->
+    <div class="contenedor-marco1">
+      <div class="contenedor">
+        <h2>Información Landing Page</h2>
+        <div class="form-group">
+          <label for="sobre">Sobre nosotros</label>
+          <textarea id="sobre"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="razon">Razón social</label>
+          <input type="text" id="razon">
+        </div>
+        <div class="form-group">
+          <label for="nit">NIT</label>
+          <input type="text" id="nit">
+        </div>
+        <div class="form-row">
+          <input type="text" placeholder="Dirección 1">
+          <input type="text" placeholder="Teléfono 1">
+          <input type="text" placeholder="Ciudad 1">
+        </div>
+        <div class="form-row">
+          <input type="text" placeholder="Dirección 2">
+          <input type="text" placeholder="Teléfono 2">
+          <input type="text" placeholder="Ciudad 2">
+          <button class="remove-btn" onclick="removeRow(this)">×</button>
+        </div>
+        <button class="add-btn">Agregar dirección</button>
+        <hr>
+        <div class="form-group">
+          <label for="correo">Correo Electrónico</label>
+          <input type="text" id="correo">
+        </div>
+        <div class="form-group">
+          <label for="pagina">Página web</label>
+          <input type="text" id="pagina">
+        </div>
+        <div class="form-group">
+          <label for="link">Link adicional</label>
+          <input type="text" id="link">
+        </div>
+        <button type="button" style="background-color: #00AAE4;">Crear Solicitud</button>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    function removeRow(btn) {
+      btn.parentElement.remove();
+    }
+  </script>
+</body>
+</html>
