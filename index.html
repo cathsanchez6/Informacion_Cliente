@@ -376,36 +376,25 @@ h2 {
 </script>
 
 <script>
-  function generarCodigo() {
-  fetch("https://cathsanchez6.github.io/Informacion_Cliente") // tu Web App URL
-    .then(response => response.text())
-    .then(codigo => {
-      document.getElementById("codigoResultado").textContent = codigo;
-    })
-    .catch(error => {
-      console.error("Error generando código:", error);
-      alert("Ocurrió un error al generar el código.");
-    });
-}
+  function generarCodigoLocal() {
+    // Obtener el último código del almacenamiento local o inicializar
+    let ultimoCodigo = localStorage.getItem("ultimoCodigo") || "CI1000";
 
+    // Extraer el número, incrementar
+    const numero = parseInt(ultimoCodigo.slice(2)) + 1;
 
-  let codigoFormulario = "";
-  let logoBlob = null;
-  let logoNombre = "";
+    // Formatear con ceros si deseas (por ejemplo, CI1001)
+    const nuevoCodigo = "CI" + numero.toString().padStart(4, "0");
 
-  // Cargar código único desde Google Sheets
-  window.onload = function () {
-    fetch("https://script.google.com/macros/s/AKfycb.../exec") // tu URL de Web App
-      .then(response => response.text())
-      .then(codigo => {
-        codigoFormulario = codigo;
-        document.getElementById("codigoResultado").textContent = codigo;
-      })
-      .catch(error => {
-        console.error("Error al generar código:", error);
-        document.getElementById("codigoResultado").textContent = "Error al cargar";
-      });
-  };
+    // Guardar el nuevo código como el último generado
+    localStorage.setItem("ultimoCodigo", nuevoCodigo);
+
+    // Mostrar en el HTML
+    document.getElementById("codigoResultado").textContent = nuevoCodigo;
+  }
+
+  // Llamar al cargar la página
+  window.onload = generarCodigoLocal;
 </script>
   <script>
   // Manejo del logo
