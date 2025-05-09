@@ -191,11 +191,10 @@
                 <i class="fas fa-users"></i>
                 <label>Logo de la empresa</label>
               </div>
-              <label style="font-size: 12px; color: #787E87;">JPG o PNG. Tamaño máximo 4MB</label>
-              <input type="file" id="logoInput" accept="image/png, image/jpeg" style="display: none;">
               <div class="header">
-                <button style="background-color: #349800;" onclick="document.getElementById('logoInput').click()">
-                  <i class="fa fa-cloud-upload"></i> Cargar imagen
+                <i class="fa fa-cloud-upload"></i><button style="background-color: #349800;" onclick="document.getElementById('logoInput').click()">
+                   <input type="file" id="logoInput" accept="image/png, image/jpeg" style="display: none;">
+                   Cargar imagen
                 </button>
                 <button style="background-color: #dc3545;" onclick="eliminarLogo()">
                   <i class="fa fa-trash"></i> Eliminar
