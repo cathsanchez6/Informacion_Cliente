@@ -275,7 +275,7 @@
               <label for="link">Link adicional</label>
               <input type="text" id="link">
             </div>
-            <button type="button" style="background-color: #00AAE4;">Crear Solicitud</button>
+            <button type="button" style="background-color: #00AAE4;" id="crearBtn">Crear Solicitud</button>
           </div>
         </div>
 
@@ -289,5 +289,46 @@
       btn.parentElement.remove();
     }
   </script>
+  <script>
+  const webAppURL = "https://script.google.com/macros/s/AKfycbX.../exec"; // Pega aquí tu URL
+
+  document.getElementById("crearBtn").addEventListener("click", async () => {
+    const data = {
+      codigo: document.getElementById("codigoResultado").textContent,
+      cantidadCajas: "4", // puedes hacerlo dinámico si gustas
+      cantidadRollos: "120",
+      seriales: "42840",
+      sobre: document.getElementById("sobre").value,
+      razon: document.getElementById("razon").value,
+      nit: document.getElementById("nit").value,
+      direccion1: document.querySelectorAll(".form-row input")[0].value,
+      telefono1: document.querySelectorAll(".form-row input")[1].value,
+      ciudad1: document.querySelectorAll(".form-row input")[2].value,
+      direccion2: document.querySelectorAll(".form-row input")[3].value,
+      telefono2: document.querySelectorAll(".form-row input")[4].value,
+      ciudad2: document.querySelectorAll(".form-row input")[5].value,
+      correo: document.getElementById("correo").value,
+      web: document.getElementById("pagina").value,
+      link: document.getElementById("link").value
+    };
+
+    try {
+      const res = await fetch(webAppURL, {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      });
+
+      const text = await res.text();
+      alert("✅ Solicitud enviada correctamente.");
+    } catch (err) {
+      alert("❌ Error al enviar la solicitud.");
+      console.error(err);
+    }
+  });
+</script>
+
 </body>
 </html>
