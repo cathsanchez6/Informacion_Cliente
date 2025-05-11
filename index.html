@@ -418,6 +418,42 @@ h2 {
       reader.readAsDataURL(file);
     }
   });
+  if (file.size > 4 * 1024 * 1024) {
+        alert("El archivo supera los 4MB.");
+        return;
+      }
+       logoBlob = file;
+        logoNombre = file.name;
+        document.getElementById("archivoNombre").textContent = logoNombre;
+      });
+    
+      function eliminarLogo() {
+        logoBlob = null;
+        logoNombre = "";
+        document.getElementById("logoInput").value = "";
+        document.getElementById("archivoNombre").textContent = "Ningún archivo cargado";
+      }
+    
+      function verLogo() {
+        if (!logoBlob) {
+          alert("No hay imagen cargada.");
+          return;
+        }
+        const url = URL.createObjectURL(logoBlob);
+        window.open(url, "_blank");
+      }
+    
+      function descargarLogo() {
+        if (!logoBlob) {
+          alert("No hay imagen para descargar.");
+          return;
+        }
+        const url = URL.createObjectURL(logoBlob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = logoNombre || "logo_empresa.png";
+        a.click();
+      }
 
   // Función para subir el logo
   async function subirLogo() {
