@@ -396,19 +396,29 @@ h2 {
 </script>
   <script>
   // Manejo del logo
-  document.getElementById("logoInput").addEventListener("change", function (e) {
+    document.getElementById("logoInput").addEventListener("change", function (e) {
     const file = e.target.files[0];
     if (!file) return;
-
+  
     if (file.size > 4 * 1024 * 1024) {
       alert("El archivo supera los 4MB.");
       return;
     }
-
+  
     logoBlob = file;
     logoNombre = file.name;
     document.getElementById("archivoNombre").textContent = logoNombre;
+  
+    const imgPreview = document.querySelector(".campo_logo img");
+    const reader = new FileReader();
+  
+    reader.onload = function (e) {
+      imgPreview.src = e.target.result;
+    };
+  
+    reader.readAsDataURL(file);
   });
+
 
   function eliminarLogo() {
     logoBlob = null;
