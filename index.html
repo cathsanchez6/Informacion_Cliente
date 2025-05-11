@@ -6,250 +6,171 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #f5f5f5;
-      margin: 0;
+      background: #f8f8f8;
       padding: 20px;
     }
-
-    .formulario {
-      max-width: 900px;
+    form {
+      max-width: 800px;
       margin: auto;
-      background-color: #ffffff;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
     }
-
-    h1 {
+    h2 {
+      grid-column: span 2;
       text-align: center;
-      margin-bottom: 30px;
     }
-
-    table {
-      width: 100%;
-      border-spacing: 20px;
+    fieldset {
+      grid-column: span 2;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      padding: 15px;
     }
-
-    td {
-      vertical-align: top;
+    legend {
+      font-weight: bold;
+      padding: 0 10px;
     }
-
     label {
       display: block;
       margin-bottom: 5px;
       font-weight: bold;
     }
-
     input[type="text"],
     input[type="number"],
-    input[type="email"],
-    input[type="url"],
-    input[type="file"] {
+    input[type="file"],
+    textarea {
       width: 100%;
       padding: 8px;
-      font-size: 14px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
       border: 1px solid #ccc;
-      border-radius: 6px;
+      border-radius: 4px;
     }
-
-    .logo-preview img {
-      max-width: 100px;
-      margin-top: 10px;
-      border: 1px solid #ccc;
-      padding: 4px;
-      background: #fff;
-    }
-
-    .boton {
-      display: block;
-      margin: 30px auto 0;
-      background-color: #007bff;
-      color: white;
+    button {
+      padding: 10px 15px;
       border: none;
-      padding: 12px 24px;
+      border-radius: 5px;
+      background: #28a745;
+      color: white;
       font-size: 16px;
-      border-radius: 6px;
       cursor: pointer;
     }
-
-    .boton:hover {
-      background-color: #0056b3;
+    button:hover {
+      background: #218838;
+    }
+    .full-width {
+      grid-column: span 2;
+    }
+    #logoPreview {
+      display: none;
+      max-width: 100px;
+      margin-top: 10px;
     }
 
-    .info-box {
-      font-size: 14px;
-      background: #f1f1f1;
-      padding: 10px;
-      border-radius: 6px;
-      margin-top: 10px;
+    @media (max-width: 600px) {
+      form {
+        grid-template-columns: 1fr;
+        padding: 10px;
+      }
+      h2 {
+        font-size: 18px;
+      }
     }
   </style>
 </head>
 <body>
+  <form id="solicitudForm">
+    <h2>Formulario de Solicitud</h2>
 
-<div class="formulario">
-  <h1>Formulario de Solicitud</h1>
-  <table>
-    <tr>
-      <td colspan="2">
-        <label>Código de Solicitud</label>
-        <strong id="codigoResultado">CI10001</strong>
-        <input type="hidden" id="codigoInput">
-        <button onclick="generarCodigoLocal()">Generar Código</button>
-      </td>
-    </tr>
+    <!-- Código y logo -->
+    <fieldset>
+      <legend>Solicitud</legend>
+      <div style="display: grid; grid-template-columns: 1fr auto; gap: 10px;">
+        <input type="text" id="codigo" name="codigo" placeholder="Código de solicitud" readonly required>
+        <button type="button" onclick="generateCode()">Generar</button>
+      </div>
+      <label for="logo">Logo de empresa:</label>
+      <input type="file" id="logo" name="logo" accept="image/*">
+      <img id="logoPreview" src="#" alt="Logo Preview">
+    </fieldset>
 
-    <tr>
-      <td>
-        <label for="cajasInput">Cantidad de Cajas</label>
-        <input type="number" id="cajasInput" oninput="actualizarCantidades()">
+    <!-- Interna -->
+    <fieldset>
+      <legend>Información Interna</legend>
+      <label for="cajas">Cantidad de cajas:</label>
+      <input type="number" id="cajas" name="cajas" min="0" required>
 
-        <div class="info-box">
-          Rollos estimados: <span id="rollosOutput">0</span><br>
-          Seriales estimados: <span id="serialesOutput">0</span>
-        </div>
+      <label for="rollos">Cantidad de rollos:</label>
+      <input type="number" id="rollos" name="rollos" min="0" required>
 
-        <label for="sobre">Tipo de sobre</label>
-        <input type="text" id="sobre">
-      </td>
+      <label for="seriales">Seriales (uno por línea):</label>
+      <textarea id="seriales" name="seriales" rows="5" required></textarea>
+    </fieldset>
 
-      <td>
-        <label for="logoInput">Cargar Logo</label>
-        <input type="file" id="logoInput" accept="image/*">
-        <div class="logo-preview">
-          <img id="logoPreview" src="" alt="Vista previa del logo">
-        </div>
-        <span id="archivoNombre">Ningún archivo seleccionado</span><br>
-        <button onclick="subirLogo()">Subir Logo</button>
-      </td>
-    </tr>
+    <!-- Landing Page -->
+    <fieldset>
+      <legend>Landing Page</legend>
+      <label for="razonSocial">Razón Social:</label>
+      <input type="text" id="razonSocial" name="razonSocial" required>
 
-    <tr>
-      <td>
-        <label for="razon">Razón Social</label>
-        <input type="text" id="razon">
+      <label for="nit">NIT:</label>
+      <input type="text" id="nit" name="nit" required>
 
-        <label for="nit">NIT</label>
-        <input type="text" id="nit">
+      <label for="direccionFiscal">Dirección fiscal:</label>
+      <input type="text" id="direccionFiscal" name="direccionFiscal" required>
 
-        <label>Dirección Principal</label>
-        <input type="text" id="direccion1">
-        <label>Teléfono</label>
-        <input type="text" id="telefono1">
-        <label>Ciudad</label>
-        <input type="text" id="ciudad1">
-      </td>
+      <label for="direccionEntrega">Dirección de entrega:</label>
+      <input type="text" id="direccionEntrega" name="direccionEntrega" required>
 
-      <td>
-        <label>Sucursal</label>
-        <input type="text" id="direccion2">
-        <label>Teléfono</label>
-        <input type="text" id="telefono2">
-        <label>Ciudad</label>
-        <input type="text" id="ciudad2">
+      <label for="correo">Correo electrónico:</label>
+      <input type="text" id="correo" name="correo" required>
 
-        <label for="correo">Correo</label>
-        <input type="email" id="correo">
+      <label for="paginaWeb">Página web:</label>
+      <input type="text" id="paginaWeb" name="paginaWeb">
+    </fieldset>
 
-        <label for="pagina">Página Web</label>
-        <input type="url" id="pagina">
+    <div class="full-width" style="text-align: center;">
+      <button type="submit">Crear solicitud</button>
+    </div>
+  </form>
 
-        <label for="link">Link de prueba</label>
-        <input type="url" id="link">
-      </td>
-    </tr>
-  </table>
-
-  <button class="boton" id="crearBtn">Crear Solicitud</button>
-</div>
-
-<script>
-  let contador = 10001;
-
-  function generarCodigoLocal() {
-    const nuevoCodigo = "CI" + contador++;
-    document.getElementById("codigoResultado").textContent = nuevoCodigo;
-    document.getElementById("codigoInput").value = nuevoCodigo;
-  }
-
-  function actualizarCantidades() {
-    const cajas = parseInt(document.getElementById('cajasInput').value) || 0;
-    document.getElementById('rollosOutput').textContent = cajas * 36;
-    document.getElementById('serialesOutput').textContent = cajas * 544;
-  }
-
-  document.getElementById("logoInput").addEventListener("change", function () {
-    const file = this.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = function (e) {
-        document.getElementById("logoPreview").src = e.target.result;
-        document.getElementById("archivoNombre").textContent = file.name;
-      };
-      reader.readAsDataURL(file);
+  <script>
+    // Generar código aleatorio
+    function generateCode() {
+      const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+      let code = "";
+      for (let i = 0; i < 3; i++) {
+        code += characters.charAt(Math.floor(Math.random() * characters.length));
+      }
+      const randomNumber = Math.floor(Math.random() * 10000).toString().padStart(4, '0');
+      const finalCode = "SOL-" + code + "-" + randomNumber;
+      document.getElementById("codigo").value = finalCode;
     }
-  });
 
-  async function subirLogo() {
-    const file = document.getElementById("logoInput").files[0];
-    if (!file) return alert("Selecciona un logo");
+    // Vista previa del logo
+    document.getElementById("logo").addEventListener("change", function () {
+      const file = this.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          const preview = document.getElementById("logoPreview");
+          preview.src = e.target.result;
+          preview.style.display = "block";
+        };
+        reader.readAsDataURL(file);
+      }
+    });
 
-    const formData = new FormData();
-    formData.append("logo", file);
-
-    try {
-      const res = await fetch("https://script.google.com/macros/s/AKfycbx39sJlkn_ZncXpLnmi48KqB3Uw2zy9nYQEo2oZwZs_UiUABGgfae0Xgb6igkw5D8jY/exec", {
-        method: "POST",
-        body: formData
-      });
-      const result = await res.text();
-      alert(result);
-    } catch (err) {
-      alert("Error al subir logo.");
-    }
-  }
-
-  document.getElementById("crearBtn").addEventListener("click", async () => {
-    const data = {
-      codigo: document.getElementById("codigoResultado").textContent,
-      cantidadCajas: document.getElementById("cajasInput").value,
-      cantidadRollos: document.getElementById("rollosOutput").textContent,
-      seriales: document.getElementById("serialesOutput").textContent,
-      sobre: document.getElementById("sobre").value,
-      razon: document.getElementById("razon").value,
-      nit: document.getElementById("nit").value,
-      direccion1: document.getElementById("direccion1").value,
-      telefono1: document.getElementById("telefono1").value,
-      ciudad1: document.getElementById("ciudad1").value,
-      direccion2: document.getElementById("direccion2").value,
-      telefono2: document.getElementById("telefono2").value,
-      ciudad2: document.getElementById("ciudad2").value,
-      correo: document.getElementById("correo").value,
-      web: document.getElementById("pagina").value,
-      link: document.getElementById("link").value
-    };
-
-    try {
-      const res = await fetch("https://script.google.com/macros/s/AKfycbx39sJlkn_ZncXpLnmi48KqB3Uw2zy9nYQEo2oZwZs_UiUABGgfae0Xgb6igkw5D8jY/exec", {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: { "Content-Type": "application/json" }
-      });
-
-      const text = await res.text();
-      alert("✅ Solicitud enviada correctamente.");
-    } catch (err) {
-      alert("❌ Error al enviar la solicitud.");
-    }
-  });
-
-  window.onload = () => {
-    fetch("https://script.google.com/macros/s/AKfycbx39sJlkn_ZncXpLnmi48KqB3Uw2zy9nYQEo2oZwZs_UiUABGgfae0Xgb6igkw5D8jY/exec")
-      .then(r => r.text())
-      .then(c => document.getElementById("codigoResultado").textContent = c)
-      .catch(() => document.getElementById("codigoResultado").textContent = "Error");
-  };
-</script>
-
+    // Enviar formulario
+    document.getElementById("solicitudForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      alert("Formulario enviado correctamente.");
+      // Aquí puedes agregar el código para enviar los datos a tu Web App
+    });
+  </script>
 </body>
 </html>
