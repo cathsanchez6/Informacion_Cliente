@@ -203,10 +203,16 @@ h2 {
             <img id="logoPreview" src="assets/logoempresa.jpg" width="50" height="30%" alt="logo_cintandina">
             </div>
             <label>Logo de la empresa</label>
+            <button type="button" onclick="document.getElementById('logoInput').click()" style="background-color: #349800;">
+              <i class="fa fa-cloud-upload"></i> Seleccionar imagen
+            </button>
           
-            <button style="background-color: #349800;" onclick="document.getElementById('logoInput').click()"><i class="fa fa-cloud-upload"></i>
-               <input type="file" id="logoInput" accept="image/png, image/jpeg" style="display: none;">
-               Cargar imagen
+            <!-- Input de tipo archivo oculto -->
+            <input type="file" id="logoInput" accept="image/png, image/jpeg" style="display: none;">
+          
+            <!-- Botón para subir imagen -->
+            <button type="button" onclick="subirLogo()" style="background-color: #349800;">
+              Subir imagen
             </button>
           </div>
           <hr>
@@ -396,62 +402,44 @@ h2 {
 </script>
   <script>
   // Manejo del logo
-    document.getElementById("logoInput").addEventListener("change", function (e) {
-    const file = e.target.files[0];
-    if (!file) return;
-  
-    if (file.size > 4 * 1024 * 1024) {
-      alert("El archivo supera los 4MB.");
-      return;
+    document.getElementById("logoInput").addEventListener("change", function () {
+    const file = this.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        document.getElementById("logoPreview").src = e.target.result;
+      };
+      reader.readAsDataURL(file);
     }
-  
-    logoBlob = file;
-    logoNombre = file.name;
-    document.getElementById("archivoNombre").textContent = logoNombre;
-  
-    const imgPreview = document.getElementById("logoPreview");
-  
-    if (imgPreview.src.includes("assets/logoempresa.jpg")) {
-      imgPreview.style.display = "none"; // Oculta el logo por defecto
-    }
-  
-    const reader = new FileReader();
-    reader.onload = function (e) {
-      imgPreview.src = e.target.result;
-      imgPreview.style.display = "block"; // Muestra la nueva imagen
-    };
-  
-    reader.readAsDataURL(file);
   });
 
+  // Función para subir el logo
+  async function subirLogo() {
+    const fileInput = document.getElementById("logoInput");
+    const file = fileInput.files[0];
 
-  function eliminarLogo() {
-    logoBlob = null;
-    logoNombre = "";
-    document.getElementById("logoInput").value = "";
-    document.getElementById("archivoNombre").textContent = "Ningún archivo cargado";
-  }
-
-  function verLogo() {
-    if (!logoBlob) {
-      alert("No hay imagen cargada.");
+    if (!file) {
+      alert("Por favor selecciona un archivo.");
       return;
     }
-    const url = URL.createObjectURL(logoBlob);
-    window.open(url, "_blank");
-  }
 
-  function descargarLogo() {
-    if (!logoBlob) {
-      alert("No hay imagen para descargar.");
-      return;
+    const formData = new FormData();
+    formData.append("logo", file);
+
+    try {
+      const response = await fetch("https://script.google.com/macros/s/AKfycbx39sJlkn_ZncXpLnmi48KqB3Uw2zy9nYQEo2oZwZs_UiUABGgfae0Xgb6igkw5D8jY/exec", {
+        method: "POST",
+        body: formData
+      });
+
+      const result = await response.text();
+      alert(result);
+    } catch (error) {
+      alert("Error al subir el logo.");
+      console.error(error);
     }
-    const url = URL.createObjectURL(logoBlob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = logoNombre || "logo_empresa.png";
-    a.click();
   }
+</script>
 </script>
   <script>
   function actualizarCantidades() {
