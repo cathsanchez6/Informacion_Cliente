@@ -200,7 +200,7 @@ h2 {
         <div class="contenedor">
           <div class="header">
             <div class="campo_logo">
-            <img src="assets/logoempresa.jpg" width="50" height="30%" alt="logo_cintandina">
+            <img id="logoPreview" src="assets/logoempresa.jpg" width="50" height="30%" alt="logo_cintandina">
             </div>
             <label>Logo de la empresa</label>
           
@@ -409,11 +409,16 @@ h2 {
     logoNombre = file.name;
     document.getElementById("archivoNombre").textContent = logoNombre;
   
-    const imgPreview = document.querySelector(".campo_logo img");
-    const reader = new FileReader();
+    const imgPreview = document.getElementById("logoPreview");
   
+    if (imgPreview.src.includes("assets/logoempresa.jpg")) {
+      imgPreview.style.display = "none"; // Oculta el logo por defecto
+    }
+  
+    const reader = new FileReader();
     reader.onload = function (e) {
       imgPreview.src = e.target.result;
+      imgPreview.style.display = "block"; // Muestra la nueva imagen
     };
   
     reader.readAsDataURL(file);
