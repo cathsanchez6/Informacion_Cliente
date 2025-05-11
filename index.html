@@ -423,6 +423,33 @@ h2 {
 
   const imgPreview = document.querySelector(".campo_logo img");
   const reader = new FileReader();
+  function eliminarLogo() {
+    logoBlob = null;
+    logoNombre = "";
+    document.getElementById("logoInput").value = "";
+    document.getElementById("archivoNombre").textContent = "Ningún archivo cargado";
+  }
+
+  function verLogo() {
+    if (!logoBlob) {
+      alert("No hay imagen cargada.");
+      return;
+    }
+    const url = URL.createObjectURL(logoBlob);
+    window.open(url, "_blank");
+  }
+
+  function descargarLogo() {
+    if (!logoBlob) {
+      alert("No hay imagen para descargar.");
+      return;
+    }
+  const url = URL.createObjectURL(logoBlob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = logoNombre || "logo_empresa.png";
+  a.click();
+  }
 
   reader.onload = function (e) {
     imgPreview.src = e.target.result;
