@@ -409,20 +409,19 @@ h2 {
   <script>
   // Manejo del logo
    document.getElementById("logoInput").addEventListener("change", function (e) {
-  const file = e.target.files[0];
-  if (!file) return;
+    const file = e.target.files[0];
+    if (!file) return;
 
-  if (file.size > 4 * 1024 * 1024) {
-    alert("El archivo supera los 4MB.");
-    return;
-  }
+    if (file.size > 4 * 1024 * 1024) {
+      alert("El archivo supera los 4MB.");
+      return;
+    }
 
-  logoBlob = file;
-  logoNombre = file.name;
-  document.getElementById("archivoNombre").textContent = logoNombre;
+    logoBlob = file;
+    logoNombre = file.name;
+    document.getElementById("archivoNombre").textContent = logoNombre;
+  });
 
-  const imgPreview = document.querySelector(".campo_logo img");
-  const reader = new FileReader();
   function eliminarLogo() {
     logoBlob = null;
     logoNombre = "";
@@ -444,46 +443,13 @@ h2 {
       alert("No hay imagen para descargar.");
       return;
     }
-  const url = URL.createObjectURL(logoBlob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = logoNombre || "logo_empresa.png";
-  a.click();
+    const url = URL.createObjectURL(logoBlob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = logoNombre || "logo_empresa.png";
+    a.click();
   }
-
-  reader.onload = function (e) {
-    imgPreview.src = e.target.result;
-  };
-
-  reader.readAsDataURL(file);
-});
-
-  // Función para subir el logo
-  async function subirLogo() {
-    const fileInput = document.getElementById("logoInput");
-    const file = fileInput.files[0];
-
-    if (!file) {
-      alert("Por favor selecciona un archivo.");
-      return;
-    }
-
-    const formData = new FormData();
-    formData.append("logo", file);
-
-    try {
-      const response = await fetch("https://script.google.com/macros/s/AKfycbx39sJlkn_ZncXpLnmi48KqB3Uw2zy9nYQEo2oZwZs_UiUABGgfae0Xgb6igkw5D8jY/exec", {
-        method: "POST",
-        body: formData
-      });
-
-      const result = await response.text();
-      alert(result);
-    } catch (error) {
-      alert("Error al subir el logo.");
-      console.error(error);
-    }
-  }
+</script>
 </script>
 </script>
   <script>
