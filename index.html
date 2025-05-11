@@ -5,40 +5,39 @@
   <title>Formulario de Solicitud</title>
   <style>
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #f9f9f9;
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
       margin: 0;
-      padding: 40px 20px;
+      padding: 20px;
     }
 
-    .container {
+    .formulario {
       max-width: 900px;
       margin: auto;
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      background-color: #ffffff;
       padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
 
     h1 {
       text-align: center;
-      margin-bottom: 40px;
-      color: #333;
+      margin-bottom: 30px;
     }
 
-    h2 {
-      margin-top: 40px;
-      margin-bottom: 10px;
-      color: #444;
-      border-bottom: 2px solid #eee;
-      padding-bottom: 5px;
+    table {
+      width: 100%;
+      border-spacing: 20px;
+    }
+
+    td {
+      vertical-align: top;
     }
 
     label {
       display: block;
-      margin-top: 15px;
-      color: #555;
-      font-weight: 500;
+      margin-bottom: 5px;
+      font-weight: bold;
     }
 
     input[type="text"],
@@ -47,147 +46,121 @@
     input[type="url"],
     input[type="file"] {
       width: 100%;
-      padding: 10px;
-      margin-top: 5px;
+      padding: 8px;
+      font-size: 14px;
       border: 1px solid #ccc;
       border-radius: 6px;
-      font-size: 14px;
-    }
-
-    .row {
-      display: flex;
-      gap: 20px;
-    }
-
-    .row > div {
-      flex: 1;
-    }
-
-    button {
-      margin-top: 20px;
-      background-color: #007bff;
-      color: white;
-      border: none;
-      padding: 12px 20px;
-      border-radius: 6px;
-      font-size: 15px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    button:hover {
-      background-color: #0056b3;
-    }
-
-    .info-box {
-      background: #f1f1f1;
-      padding: 15px;
-      margin-top: 10px;
-      border-radius: 6px;
-      font-size: 14px;
-    }
-
-    .logo-preview {
-      margin-top: 15px;
-      display: flex;
-      align-items: center;
-      gap: 15px;
     }
 
     .logo-preview img {
       max-width: 100px;
-      border-radius: 6px;
+      margin-top: 10px;
       border: 1px solid #ccc;
-      padding: 5px;
+      padding: 4px;
       background: #fff;
     }
 
-    .center {
-      text-align: center;
+    .boton {
+      display: block;
+      margin: 30px auto 0;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .boton:hover {
+      background-color: #0056b3;
+    }
+
+    .info-box {
+      font-size: 14px;
+      background: #f1f1f1;
+      padding: 10px;
+      border-radius: 6px;
+      margin-top: 10px;
     }
   </style>
 </head>
 <body>
 
-<div class="container">
+<div class="formulario">
   <h1>Formulario de Solicitud</h1>
+  <table>
+    <tr>
+      <td colspan="2">
+        <label>Código de Solicitud</label>
+        <strong id="codigoResultado">CI10001</strong>
+        <input type="hidden" id="codigoInput">
+        <button onclick="generarCodigoLocal()">Generar Código</button>
+      </td>
+    </tr>
 
-  <h2>Código de Solicitud</h2>
-  <div class="center">
-    <strong id="codigoResultado">CI10001</strong><br>
-    <button onclick="generarCodigoLocal()">Generar Código</button>
-    <input type="hidden" id="codigoInput">
-  </div>
+    <tr>
+      <td>
+        <label for="cajasInput">Cantidad de Cajas</label>
+        <input type="number" id="cajasInput" oninput="actualizarCantidades()">
 
-  <h2>Información Interna</h2>
-  <label for="cajasInput">Cantidad de Cajas</label>
-  <input type="number" id="cajasInput" oninput="actualizarCantidades()">
+        <div class="info-box">
+          Rollos estimados: <span id="rollosOutput">0</span><br>
+          Seriales estimados: <span id="serialesOutput">0</span>
+        </div>
 
-  <div class="info-box">
-    Rollos estimados: <span id="rollosOutput">0</span><br>
-    Seriales estimados: <span id="serialesOutput">0</span>
-  </div>
+        <label for="sobre">Tipo de sobre</label>
+        <input type="text" id="sobre">
+      </td>
 
-  <label for="sobre">Tipo de sobre</label>
-  <input type="text" id="sobre">
+      <td>
+        <label for="logoInput">Cargar Logo</label>
+        <input type="file" id="logoInput" accept="image/*">
+        <div class="logo-preview">
+          <img id="logoPreview" src="" alt="Vista previa del logo">
+        </div>
+        <span id="archivoNombre">Ningún archivo seleccionado</span><br>
+        <button onclick="subirLogo()">Subir Logo</button>
+      </td>
+    </tr>
 
-  <h2>Cargar Logo</h2>
-  <input type="file" id="logoInput" accept="image/*">
-  <div class="logo-preview">
-    <img id="logoPreview" src="" alt="Vista previa del logo">
-    <span id="archivoNombre">Ningún archivo seleccionado</span>
-  </div>
-  <button onclick="subirLogo()">Subir Logo</button>
+    <tr>
+      <td>
+        <label for="razon">Razón Social</label>
+        <input type="text" id="razon">
 
-  <h2>Información Empresa (Landing Page)</h2>
-  <label for="razon">Razón Social</label>
-  <input type="text" id="razon">
+        <label for="nit">NIT</label>
+        <input type="text" id="nit">
 
-  <label for="nit">NIT</label>
-  <input type="text" id="nit">
+        <label>Dirección Principal</label>
+        <input type="text" id="direccion1">
+        <label>Teléfono</label>
+        <input type="text" id="telefono1">
+        <label>Ciudad</label>
+        <input type="text" id="ciudad1">
+      </td>
 
-  <h3>Dirección Principal</h3>
-  <div class="row">
-    <div>
-      <label>Dirección</label>
-      <input type="text">
-    </div>
-    <div>
-      <label>Teléfono</label>
-      <input type="text">
-    </div>
-    <div>
-      <label>Ciudad</label>
-      <input type="text">
-    </div>
-  </div>
+      <td>
+        <label>Sucursal</label>
+        <input type="text" id="direccion2">
+        <label>Teléfono</label>
+        <input type="text" id="telefono2">
+        <label>Ciudad</label>
+        <input type="text" id="ciudad2">
 
-  <h3>Sucursal</h3>
-  <div class="row">
-    <div>
-      <label>Dirección</label>
-      <input type="text">
-    </div>
-    <div>
-      <label>Teléfono</label>
-      <input type="text">
-    </div>
-    <div>
-      <label>Ciudad</label>
-      <input type="text">
-    </div>
-  </div>
+        <label for="correo">Correo</label>
+        <input type="email" id="correo">
 
-  <label for="correo">Correo</label>
-  <input type="email" id="correo">
+        <label for="pagina">Página Web</label>
+        <input type="url" id="pagina">
 
-  <label for="pagina">Página Web</label>
-  <input type="url" id="pagina">
+        <label for="link">Link de prueba</label>
+        <input type="url" id="link">
+      </td>
+    </tr>
+  </table>
 
-  <label for="link">Link de prueba</label>
-  <input type="url" id="link">
-
-  <button id="crearBtn">Crear Solicitud</button>
+  <button class="boton" id="crearBtn">Crear Solicitud</button>
 </div>
 
 <script>
@@ -201,11 +174,8 @@
 
   function actualizarCantidades() {
     const cajas = parseInt(document.getElementById('cajasInput').value) || 0;
-    const rollos = cajas * 36;
-    const seriales = cajas * 544;
-
-    document.getElementById('rollosOutput').textContent = rollos;
-    document.getElementById('serialesOutput').textContent = seriales;
+    document.getElementById('rollosOutput').textContent = cajas * 36;
+    document.getElementById('serialesOutput').textContent = cajas * 544;
   }
 
   document.getElementById("logoInput").addEventListener("change", function () {
@@ -248,12 +218,12 @@
       sobre: document.getElementById("sobre").value,
       razon: document.getElementById("razon").value,
       nit: document.getElementById("nit").value,
-      direccion1: document.querySelectorAll(".row input")[0].value,
-      telefono1: document.querySelectorAll(".row input")[1].value,
-      ciudad1: document.querySelectorAll(".row input")[2].value,
-      direccion2: document.querySelectorAll(".row input")[3].value,
-      telefono2: document.querySelectorAll(".row input")[4].value,
-      ciudad2: document.querySelectorAll(".row input")[5].value,
+      direccion1: document.getElementById("direccion1").value,
+      telefono1: document.getElementById("telefono1").value,
+      ciudad1: document.getElementById("ciudad1").value,
+      direccion2: document.getElementById("direccion2").value,
+      telefono2: document.getElementById("telefono2").value,
+      ciudad2: document.getElementById("ciudad2").value,
       correo: document.getElementById("correo").value,
       web: document.getElementById("pagina").value,
       link: document.getElementById("link").value
