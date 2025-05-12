@@ -301,7 +301,7 @@ h2 {
   <!-- Generar código al cargar la página -->
   <script>
   window.onload = function () {
-  fetch("https://script.google.com/macros/s/AKfycbw5ut_A8cMBn4qQ1hlUnq3aVFrMgC-1X5WGJWd91EJ9sC4KGMuHxwoZfUIG2SRPH8n3/exec", {
+  fetch("https://script.google.com/macros/s/AKfycbxtWv6HrA6luUCQoi74Z1fECCdzOMWHqQw1KRmDwTH8SIHRv1MYmd038srWlSyJwUug/exec", {
     method: "GET"
   })
     .then(response => response.text())
@@ -322,7 +322,7 @@ h2 {
   <script>
     async function generarCodigoLocal() {
   try {
-    const res = await fetch("https://script.google.com/macros/s/AKfycbw5ut_A8cMBn4qQ1hlUnq3aVFrMgC-1X5WGJWd91EJ9sC4KGMuHxwoZfUIG2SRPH8n3/exec");
+    const res = await fetch("https://script.google.com/macros/s/AKfycbxtWv6HrA6luUCQoi74Z1fECCdzOMWHqQw1KRmDwTH8SIHRv1MYmd038srWlSyJwUug/exec");
     const data = await res.json();
 
     if (data.success) {
@@ -464,7 +464,7 @@ function descargarLogo() {
       };
 
       try {
-        const response = await fetch("https://script.google.com/macros/s/AKfycbw5ut_A8cMBn4qQ1hlUnq3aVFrMgC-1X5WGJWd91EJ9sC4KGMuHxwoZfUIG2SRPH8n3/exec", {
+        const response = await fetch("https://script.google.com/macros/s/AKfycbxtWv6HrA6luUCQoi74Z1fECCdzOMWHqQw1KRmDwTH8SIHRv1MYmd038srWlSyJwUug/exec", {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
@@ -534,7 +534,7 @@ function descargarLogo() {
     link: document.getElementById('link').value,
   };
 
-  const url = 'https://script.google.com/macros/s/AKfycbw5ut_A8cMBn4qQ1hlUnq3aVFrMgC-1X5WGJWd91EJ9sC4KGMuHxwoZfUIG2SRPH8n3/exec';
+  const url = 'https://script.google.com/macros/s/AKfycbxtWv6HrA6luUCQoi74Z1fECCdzOMWHqQw1KRmDwTH8SIHRv1MYmd038srWlSyJwUug/exec';
 
   const res = await fetch(url, {
     method: 'POST',
