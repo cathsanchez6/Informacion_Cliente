@@ -423,12 +423,18 @@ function descargarLogo() {
     const sobre = document.getElementById("sobre").value;
     const razon = document.getElementById("razon").value;
     const nit = document.getElementById("nit").value;
-    const direccion1 = document.querySelectorAll(".form-row input")[0].value;
-    const telefono1 = document.querySelectorAll(".form-row input")[1].value;
-    const ciudad1 = document.querySelectorAll(".form-row input")[2].value;
-    const direccion2 = document.querySelectorAll(".form-row")[1].children[0].value;
-    const telefono2 = document.querySelectorAll(".form-row")[1].children[1].value;
-    const ciudad2 = document.querySelectorAll(".form-row")[1].children[2].value;
+    const direcciones = [];
+      document.querySelectorAll(".form-row").forEach(row => {
+        const inputs = row.querySelectorAll("input");
+        if (inputs.length === 3) {
+          direcciones.push({
+            direccion: inputs[0].value,
+            telefono: inputs[1].value,
+            ciudad: inputs[2].value
+          });
+        }
+      });
+    
     const correo = document.getElementById("correo").value;
     const web = document.getElementById("pagina").value;
     const link = document.getElementById("link").value;
@@ -452,12 +458,7 @@ function descargarLogo() {
         sobre,
         razon,
         nit,
-        direccion1,
-        telefono1,
-        ciudad1,
-        direccion2,
-        telefono2,
-        ciudad2,
+        direcciones,
         correo,
         web,
         link
