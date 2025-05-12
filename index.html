@@ -304,7 +304,7 @@ h2 {
   fetch("https://script.google.com/macros/s/AKfycbygmRPp6w3xgwxXnl775aG5NigaWxXKYEOBldFbJUEvCpGzk5_uAmkXBYR4vqH71ywu/exec")
     .then(response => response.text())
     .then(codigo => {
-      document.getElementById("codigoResultado").textContent = codigo;
+      document.getElementById("codigoInput").value = codigo;
     })
     .catch(error => {
       console.error("Error al generar código:", error);
@@ -473,18 +473,17 @@ h2 {
   }
 </script>
   <script>
-    document.querySelector(".add-btn").addEventListener("click", () => {
-  const row = document.createElement("div");
-  row.classList.add("form-row");
-  row.innerHTML = `
-    <input type="text" placeholder="Dirección">
-    <input type="text" placeholder="Teléfono">
-    <input type="text" placeholder="Ciudad">
-    <button class="remove-btn" onclick="removeRow(this)">×</button>
-  `;
-  const container = document.querySelector(".add-btn").parentElement;
-  container.insertBefore(row, document.querySelector(".add-btn"));
-});
+    document.querySelector(".add-btn").addEventListener("click", function () {
+      const nuevaFila = document.createElement("div");
+      nuevaFila.classList.add("form-row");
+      nuevaFila.innerHTML = `
+        <input type="text" placeholder="Dirección">
+        <input type="text" placeholder="Teléfono">
+        <input type="text" placeholder="Ciudad">
+        <button class="remove-btn" onclick="removeRow(this)">×</button>
+      `;
+      this.before(nuevaFila);
+    });
 
   </script>
 </body>
