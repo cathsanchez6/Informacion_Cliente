@@ -510,6 +510,47 @@ h2 {
 }
 
   </script>
+  <script>
+    async function enviarFormulario() {
+  const formData = {
+    logo: imagenBase64, // imagen convertida a base64
+    cajas: document.getElementById('cajas').value,
+    rollos: document.getElementById('rollos').value,
+    seriales: document.getElementById('seriales').value,
+    sobre: document.getElementById('sobre').value,
+    razon: document.getElementById('razon').value,
+    nit: document.getElementById('nit').value,
+    direccion1: document.getElementById('direccion1').value,
+    telefono1: document.getElementById('telefono1').value,
+    ciudad1: document.getElementById('ciudad1').value,
+    direccion2: document.getElementById('direccion2').value,
+    telefono2: document.getElementById('telefono2').value,
+    ciudad2: document.getElementById('ciudad2').value,
+    correo: document.getElementById('correo').value,
+    web: document.getElementById('web').value,
+    link: document.getElementById('link').value,
+  };
+
+  const url = 'https://script.google.com/macros/s/AKfycbwuLz5rkyvc7HcfGM7FkgO8XkPtwKhCnln1aUsx4u8YXXcbhJx78wHtInJZsOI4YIQi/exec';
+
+  const res = await fetch(url, {
+    method: 'POST',
+    body: JSON.stringify(formData),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  });
+
+  const json = await res.json();
+  if (json.status === 'ok') {
+    alert(`Cliente guardado con código: ${json.codigoGenerado}`);
+  } else {
+    alert('Hubo un error al guardar');
+  }
+}
+
+  </script>
+  
 </body>
 </html>
 
