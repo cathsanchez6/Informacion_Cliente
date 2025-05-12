@@ -301,23 +301,24 @@ h2 {
   <!-- Generar código al cargar la página -->
   <script>
   window.onload = function () {
-    fetch("https://script.google.com/macros/s/AKfycbz3JqD23kl_WQdj-P3glbk9KV7NbqYnTlyzX6FOr-1oC9uKbowgQxDhCgoREHUyfSDo/exec") // 
-      .then(response => response.text())
-      .then(codigo => {
-        document.getElementById("codigoResultado").textContent = codigo;
-      })
-      .catch(error => {
-        console.error("Error al generar código:", error);
-        document.getElementById("codigoResultado").textContent = "Error al cargar";
-      });
-  };
+  fetch("https://script.google.com/macros/s/AKfycbyVkXRcdNXIbVBXQk7ypFNb_g5GYjdiwxbxtmnZQ8BdqiyHdI9FQ086Z9744vkUkR0c/exec")
+    .then(response => response.text())
+    .then(codigo => {
+      document.getElementById("codigoResultado").textContent = codigo;
+    })
+    .catch(error => {
+      console.error("Error al generar código:", error);
+      document.getElementById("codigoResultado").textContent = "Error al cargar el código";
+      alert("Hubo un problema al generar el código. Intenta de nuevo.");
+    });
+};
   </script>
 
   <!-- Función para generar el código -->
   <script>
   async function generarCodigoLocal() {
     try {
-      const res = await fetch("https://script.google.com/macros/s/AKfycbz3JqD23kl_WQdj-P3glbk9KV7NbqYnTlyzX6FOr-1oC9uKbowgQxDhCgoREHUyfSDo/exec"); 
+      const res = await fetch("https://script.google.com/macros/s/AKfycbyVkXRcdNXIbVBXQk7ypFNb_g5GYjdiwxbxtmnZQ8BdqiyHdI9FQ086Z9744vkUkR0c/exec"); 
       const codigo = await res.text();
       document.getElementById("codigoResultado").textContent = codigo;
       document.getElementById("codigoInput").value = codigo; // Actualiza el hidden input con el nuevo código
@@ -446,7 +447,7 @@ h2 {
       };
 
       try {
-        const response = await fetch("https://script.google.com/macros/s/AKfycbz3JqD23kl_WQdj-P3glbk9KV7NbqYnTlyzX6FOr-1oC9uKbowgQxDhCgoREHUyfSDo/exec", {
+        const response = await fetch("https://script.google.com/macros/s/AKfycbyVkXRcdNXIbVBXQk7ypFNb_g5GYjdiwxbxtmnZQ8BdqiyHdI9FQ086Z9744vkUkR0c/exec", {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
