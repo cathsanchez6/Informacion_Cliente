@@ -123,7 +123,7 @@
   <!-- Generar código al cargar la página -->
   <script>
   window.onload = function () {
-    fetch("https://script.google.com/macros/s/AKfycbxcAUJ68PlcSNBEMBcmwreLPZch_ZTN07s3S0D5p-580hwLIg2iGcisK6dri5cNa7fR/exec") // <-- tu URL aquí
+    fetch("https://script.google.com/macros/s/AKfycbzF5RaNtGkoVxr4Bp0qfXea0V-A85ES--d0k1HeUkQeu2dKv9l5_mRhOvjH1_FAeysR/exec") // 
       .then(response => response.text())
       .then(codigo => {
         document.getElementById("codigoResultado").textContent = codigo;
@@ -139,7 +139,7 @@
   <script>
   async function generarCodigoLocal() {
     try {
-      const res = await fetch("https://script.google.com/macros/s/AKfycbxcAUJ68PlcSNBEMBcmwreLPZch_ZTN07s3S0D5p-580hwLIg2iGcisK6dri5cNa7fR/exec"); // Reemplaza con tu URL
+      const res = await fetch("https://script.google.com/macros/s/AKfycbzF5RaNtGkoVxr4Bp0qfXea0V-A85ES--d0k1HeUkQeu2dKv9l5_mRhOvjH1_FAeysR/exec"); 
       const codigo = await res.text();
       document.getElementById("codigoResultado").textContent = codigo;
       document.getElementById("codigoInput").value = codigo; // Actualiza el hidden input con el nuevo código
