@@ -298,31 +298,6 @@ h2 {
     }
   </script>
 
-  <!-- Generar código al cargar la página -->
-  <script>
-     window.onload = function () {
-      fetch("https://script.google.com/macros/s/AKfycbyPESKNzo0kLoC--vt9jBZg11hDBeeG6AU2GFaU57ovwXNYEOpIInGKyrQAXDUKsYgP/exec", {
-        method: "GET"
-      })
-        .then(response => response.json()) 
-        .then(data => {
-          console.log("Código generado:", data);
-          if (data.success) {
-            document.getElementById("codigoResultado").textContent = data.codigo;
-            document.getElementById("codigoInput").value = data.codigo;
-          } else {
-            document.getElementById("codigoResultado").textContent = "Error al cargar el código";
-            alert("Error: " + data.error);
-          }
-        })
-        .catch(error => {
-          console.error("Error al generar código:", error);
-          document.getElementById("codigoResultado").textContent = "Error al cargar el código";
-          alert("Hubo un problema al generar el código. Intenta de nuevo.");
-        });
-    };
-  </script>
-
   <!-- Función para generar el código -->
   <script>
     async function generarCodigoLocal() {
