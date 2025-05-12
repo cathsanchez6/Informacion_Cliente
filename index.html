@@ -301,10 +301,12 @@ h2 {
   <!-- Generar código al cargar la página -->
   <script>
   window.onload = function () {
-  fetch("https://script.google.com/macros/s/AKfycbygmRPp6w3xgwxXnl775aG5NigaWxXKYEOBldFbJUEvCpGzk5_uAmkXBYR4vqH71ywu/exec")
-    .then(response => response.text())
-    .then(codigo => {
-      document.getElementById("codigoInput").value = codigo;
+  fetch("https://script.google.com/macros/s/AKfycbwYRRL0OlIUNgZihLKWdPVRDM6icwa3wbp5Dt40wVu57czbosx0c6-UHBM4hMENYb8D/exec"){
+    method: "GET",
+      })
+    .then(response => response.json())
+    .then(data => {
+      console.log("Código generado:", data.codigo);
     })
     .catch(error => {
       console.error("Error al generar código:", error);
@@ -318,7 +320,7 @@ h2 {
   <script>
   async function generarCodigoLocal() {
     try {
-      const res = await fetch("https://script.google.com/macros/s/AKfycbygmRPp6w3xgwxXnl775aG5NigaWxXKYEOBldFbJUEvCpGzk5_uAmkXBYR4vqH71ywu/exec"); 
+      const res = await fetch("https://script.google.com/macros/s/AKfycbwYRRL0OlIUNgZihLKWdPVRDM6icwa3wbp5Dt40wVu57czbosx0c6-UHBM4hMENYb8D/exec"); 
       const codigo = await res.text();
       document.getElementById("codigoResultado").textContent = codigo;
       document.getElementById("codigoInput").value = codigo; // Actualiza el hidden input con el nuevo código
@@ -451,7 +453,7 @@ h2 {
       };
 
       try {
-        const response = await fetch("https://script.google.com/macros/s/AKfycbygmRPp6w3xgwxXnl775aG5NigaWxXKYEOBldFbJUEvCpGzk5_uAmkXBYR4vqH71ywu/exec", {
+        const response = await fetch("https://script.google.com/macros/s/AKfycbwYRRL0OlIUNgZihLKWdPVRDM6icwa3wbp5Dt40wVu57czbosx0c6-UHBM4hMENYb8D/exec", {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
