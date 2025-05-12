@@ -308,19 +308,7 @@ h2 {
   </script>
 
   <!-- Función para generar el código -->
-  <script>
-  async function generarCodigoLocal() {
-    try {
-      const res = await fetch("https://script.google.com/macros/s/AKfycbw5kU-T1deiL4w2cOyxxZjdZQGIXgqYnfehZNsCmJA0BFUuZ1WxzHeafIyQ2xHHiwn3/exec"); 
-      const codigo = await res.text();
-      document.getElementById("codigoResultado").textContent = codigo;
-      document.getElementById("codigoInput").value = codigo; // Actualiza el hidden input con el nuevo código
-    } catch (err) {
-      alert("Error al generar el código");
-      console.error(err);
-    }
-  }
-  </script>
+
 
   <script>
   // Manejo del logo
