@@ -304,7 +304,7 @@ h2 {
       fetch("https://script.google.com/macros/s/AKfycbyPESKNzo0kLoC--vt9jBZg11hDBeeG6AU2GFaU57ovwXNYEOpIInGKyrQAXDUKsYgP/exec", {
         method: "GET"
       })
-        .then(response => response.json()) // 👈 CAMBIAR .text() a .json()
+        .then(response => response.json()) 
         .then(data => {
           console.log("Código generado:", data);
           if (data.success) {
@@ -418,20 +418,21 @@ function descargarLogo() {
   <script>
   document.getElementById("crearBtn").addEventListener("click", crearSolicitud);
 
-  async function crearSolicitud() {
-    const codigo = document.getElementById("codigoInput").value;
-    const logoInput = document.getElementById("logoInput");
-    const cajas = document.getElementById("cajasInput").value || 0;
-    const rollos = cajas * 36;
-    const seriales = cajas * 544;
+  async function convertirLogoABase64(blob) {
+    const reader = new FileReader();
+    return new Promise((resolve, reject) => {
+      reader.onloadend = () => resolve(reader.result);
+      reader.onerror = reject;
+      reader.readAsDataURL(blob);
+    });
+  }
 
-    const direccion1 = direcciones[0]?.direccion || "";
-    const telefono1 = direcciones[0]?.telefono || "";
-    const ciudad1 = direcciones[0]?.ciudad || "";
     
-    const direccion2 = direcciones[1]?.direccion || "";
-    const telefono2 = direcciones[1]?.telefono || "";
-    const ciudad2 = direcciones[1]?.ciudad || "";
+    const direcciones = []; // 
+    const sobre = document.getElementById("sobre").value;
+    const razon = document.getElementById("razon").value;
+    const nit = document.getElementById("nit").value;
+    const base64Logo = logoBlob ? await convertirLogoABase64(logoBlob) : "";
     
     const datos = {
       codigo,
@@ -442,16 +443,17 @@ function descargarLogo() {
       sobre,
       razon,
       nit,
-      direccion1,
-      telefono1,
-      ciudad1,
-      direccion2,
-      telefono2,
-      ciudad2,
-      correo,
-      web,
-      link
+      direccion1: direcciones[0]?.direccion || "",
+      telefono1: direcciones[0]?.telefono || "",
+      ciudad1: direcciones[0]?.ciudad || "",
+      direccion2: direcciones[1]?.direccion || "",
+      telefono2: direcciones[1]?.telefono || "",
+      ciudad2: direcciones[1]?.ciudad || "",
+      correo: document.getElementById("correo").value,
+      web: document.getElementById("pagina").value,
+      link: document.getElementById("link").value
     };
+
 
 
       try {
