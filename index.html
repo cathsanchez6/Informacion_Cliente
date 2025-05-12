@@ -341,7 +341,7 @@ h2 {
   </script>
   <script>
   // Manejo del logo
-    let logoBlob = null; // Definir logoBlob fuera del ámbito del evento
+   let logoBlob = null; // Definir logoBlob fuera del ámbito del evento
   let logoNombre = ""; // Definir logoNombre fuera del ámbito del evento
 
 document.getElementById("logoInput").addEventListener("change", function (e) {
@@ -361,7 +361,7 @@ document.getElementById("logoInput").addEventListener("change", function (e) {
 
   reader.onload = function (e) {
     imgPreview.src = e.target.result;
-    logoBlob = new Blob([e.target.result], { type: file.type }); // Asignar logoBlob aquí
+    logoBlob = file; // Asignar directamente el archivo como Blob
   };
 
   reader.readAsDataURL(file);
