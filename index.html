@@ -160,6 +160,35 @@ h2 {
   gap: 10px;
   margin-bottom: 10px;
 }
+    .botones-codigo {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.boton-codigo {
+  flex: 1;
+  padding: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 6px;
+  color: white;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  text-align: center;
+}
+.boton-nuevo {
+  background-color: #007bff;
+}
+
+.boton-editar {
+  background-color: #787E87;
+}
+
 </style>
 </head>
 <body>
@@ -172,14 +201,14 @@ h2 {
               <div>
                 <label>Código de solicitud:</label>
                 <div style="display: flex; align-items: center; gap: 10px;">
-                  <button type="button" id="generarBtn" style="background-color: #007bff; color: white;">
+                  <button type="button" id="generarBtn" class="boton-codigo boton-nuevo">
                     Crear nuevo código
 
                   </button>
                 </div>
                 <br>
               <div class="header">
-                <button style="background-color: #787E87;">
+                <button class="boton-codigo boton-editar">
                   <i class="fas fa-pen"></i> Editar código existente
                 </button>
                 <div class="form-row">
