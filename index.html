@@ -270,7 +270,7 @@ h2 {
           <input type="text" placeholder="Ciudad 2">
           <button class="remove-btn" onclick="removeRow(this)">×</button>
         </div>
-        <button class="add-btn">Agregar dirección</button>
+        <button class="add-btn" onclick="agregarDireccion()">Agregar dirección</button>
         <hr>
         <div class="form-group">
           <label for="correo">Correo Electrónico</label>
@@ -301,12 +301,14 @@ h2 {
   <!-- Generar código al cargar la página -->
   <script>
   window.onload = function () {
-  fetch("https://script.google.com/macros/s/AKfycbwYRRL0OlIUNgZihLKWdPVRDM6icwa3wbp5Dt40wVu57czbosx0c6-UHBM4hMENYb8D/exec"){
-    method: "GET",
-      })
-    .then(response => response.json())
+  fetch("https://script.google.com/macros/s/AKfycbwYRRL0OlIUNgZihLKWdPVRDM6icwa3wbp5Dt40wVu57czbosx0c6-UHBM4hMENYb8D/exec", {
+    method: "GET"
+  })
+    .then(response => response.text())
     .then(data => {
-      console.log("Código generado:", data.codigo);
+      console.log("Código generado:", data);
+      document.getElementById("codigoResultado").textContent = data;
+      document.getElementById("codigoInput").value = data;
     })
     .catch(error => {
       console.error("Error al generar código:", error);
@@ -342,7 +344,7 @@ h2 {
     return;
   }
 
-  logoBlob = file;
+  let logoBlob = null;
   logoNombre = file.name;
   document.getElementById("archivoNombre").textContent = logoNombre;
 
@@ -486,6 +488,20 @@ h2 {
       `;
       this.before(nuevaFila);
     });
+  </script>
+
+  <script>
+    function agregarDireccion() {
+  const container = document.createElement("div");
+  container.className = "form-row";
+  container.innerHTML = `
+    <input type="text" placeholder="Dirección">
+    <input type="text" placeholder="Teléfono">
+    <input type="text" placeholder="Ciudad">
+    <button class="remove-btn" onclick="removeRow(this)">×</button>
+  `;
+  document.querySelector(".add-btn").before(container);
+}
 
   </script>
 </body>
