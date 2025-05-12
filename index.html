@@ -300,23 +300,11 @@ h2 {
 
   <!-- Generar código al cargar la página -->
   <script>
-  
-  window.onload = function () {
-  fetch("https://script.google.com/macros/s/AKfycbw5kU-T1deiL4w2cOyxxZjdZQGIXgqYnfehZNsCmJA0BFUuZ1WxzHeafIyQ2xHHiwn3/exec, {
-    method: "GET"
-  })
-    .then(response => response.text())
-    .then(data => {
-      console.log("Código generado:", data);
-      document.getElementById("codigoResultado").textContent = data;
-      document.getElementById("codigoInput").value = data;
-    })
-    .catch(error => {
-      console.error("Error al generar código:", error);
-      document.getElementById("codigoResultado").textContent = "Error al cargar el código";
-      alert("Hubo un problema al generar el código. Intenta de nuevo.");
-    });
-};
+      
+     async function generarCodigoLocal() {
+      console.log("Botón presionado, generando código...");
+      document.getElementById("codigoResultado").textContent = "CI_PRUEBA_001";
+    }
   </script>
 
   <!-- Función para generar el código -->
