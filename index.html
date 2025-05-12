@@ -378,9 +378,13 @@ h2 {
     const url = URL.createObjectURL(logoBlob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = logoNombre || "logo_empresa.png";
+    a.download = logoNombre || "logo_empresa.jpg";
+    document.body.appendChild(a);
     a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url); // Limpieza
   }
+
   </script>
 
   <script>
@@ -468,6 +472,21 @@ h2 {
     reader.readAsDataURL(logoFile); // Convierte logo a Base64
   }
 </script>
+  <script>
+    document.querySelector(".add-btn").addEventListener("click", () => {
+  const row = document.createElement("div");
+  row.classList.add("form-row");
+  row.innerHTML = `
+    <input type="text" placeholder="Dirección">
+    <input type="text" placeholder="Teléfono">
+    <input type="text" placeholder="Ciudad">
+    <button class="remove-btn" onclick="removeRow(this)">×</button>
+  `;
+  const container = document.querySelector(".add-btn").parentElement;
+  container.insertBefore(row, document.querySelector(".add-btn"));
+});
+
+  </script>
 </body>
 </html>
 
