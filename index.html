@@ -298,25 +298,35 @@ h2 {
     }
   </script>
 
-  <!-- Función para generar el código -->
+    <!-- Generar código al cargar la página -->
   <script>
-    async function generarCodigoLocal() {
-  try {
-    const res = await fetch("https://script.google.com/macros/s/AKfycbxaLLPHgPWC51oNNaNWCKMGhjvpdR4oy6522YDSbiStDDuSUqPsNcBDmJOT701xXub4/exec");
-    const data = await res.json();
+  
+// Dejar el campo en blanco al cargar la página
+    window.onload = function () {
+      document.getElementById("codigoResultado").textContent = "";
+      document.getElementById("codigoInput").value = "";
+    };
 
-    if (data.success) {
-      const codigo = data.codigo;
-      document.getElementById("codigoResultado").textContent = codigo;
-      document.getElementById("codigoInput").value = codigo;
-    } else {
-      alert("Error al generar el código: " + data.error);
-    }
-  } catch (err) {
-    alert("Error al generar el código");
-    console.error(err);
-  }
-}
+    // Función para generar el código al presionar el botón
+    document.getElementById("generarBtn").addEventListener("click", async function () {
+      try {
+        const res = await fetch("https://script.google.com/macros/s/AKfycbwnMj_LmH51L9xAEkbo0n6vXocKU4n5QktQ9HPKkTEu-OqF__1fvUpITxkIYsfL2NqE/exec", {
+          method: "GET"
+        });
+        const data = await res.json();
+
+        if (data.success) {
+          const codigo = data.codigo;
+          document.getElementById("codigoResultado").textContent = codigo;
+          document.getElementById("codigoInput").value = codigo;
+        } else {
+          alert("Error al generar el código: " + data.error);
+        }
+      } catch (err) {
+        alert("Error al generar el código");
+        console.error(err);
+      }
+    });
 
   </script>
   <script>
