@@ -341,7 +341,10 @@ h2 {
   </script>
   <script>
   // Manejo del logo
-    document.getElementById("logoInput").addEventListener("change", function (e) {
+    let logoBlob = null; // Definir logoBlob fuera del ámbito del evento
+  let logoNombre = ""; // Definir logoNombre fuera del ámbito del evento
+
+document.getElementById("logoInput").addEventListener("change", function (e) {
   const file = e.target.files[0];
   if (!file) return;
 
@@ -350,7 +353,6 @@ h2 {
     return;
   }
 
-  let logoBlob = null;
   logoNombre = file.name;
   document.getElementById("archivoNombre").textContent = logoNombre;
 
@@ -359,41 +361,42 @@ h2 {
 
   reader.onload = function (e) {
     imgPreview.src = e.target.result;
+    logoBlob = new Blob([e.target.result], { type: file.type }); // Asignar logoBlob aquí
   };
 
   reader.readAsDataURL(file);
 });
 
-  function eliminarLogo() {
-    logoBlob = null;
-    logoNombre = "";
-    document.getElementById("logoInput").value = "";
-    document.getElementById("archivoNombre").textContent = "Ningún archivo cargado";
-  }
+function eliminarLogo() {
+  logoBlob = null;
+  logoNombre = "";
+  document.getElementById("logoInput").value = "";
+  document.getElementById("archivoNombre").textContent = "Ningún archivo cargado";
+}
 
-  function verLogo() {
-    if (!logoBlob) {
-      alert("No hay imagen cargada.");
-      return;
-    }
-    const url = URL.createObjectURL(logoBlob);
-    window.open(url, "_blank");
+function verLogo() {
+  if (!logoBlob) {
+    alert("No hay imagen cargada.");
+    return;
   }
+  const url = URL.createObjectURL(logoBlob);
+  window.open(url, "_blank");
+}
 
-  function descargarLogo() {
-    if (!logoBlob) {
-      alert("No hay imagen para descargar.");
-      return;
-    }
-    const url = URL.createObjectURL(logoBlob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = logoNombre || "logo_empresa.jpg";
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url); // Limpieza
+function descargarLogo() {
+  if (!logoBlob) {
+    alert("No hay imagen para descargar.");
+    return;
   }
+  const url = URL.createObjectURL(logoBlob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = logoNombre || "logo_empresa.jpg";
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url); // Limpieza
+}
 
   </script>
 
