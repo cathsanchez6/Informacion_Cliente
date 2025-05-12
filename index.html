@@ -301,7 +301,7 @@ h2 {
   <!-- Generar código al cargar la página -->
   <script>
   window.onload = function () {
-  fetch("https://script.google.com/macros/s/AKfycbyyyiThaG9Un1nBGQiP8aDBKhW0ARnVoPyV-OT27AUq7_XdXXkZrIdHr_UsLxZ2qNgd/exec")
+  fetch("https://script.google.com/macros/s/AKfycbxSAg5ozp5QcQONFnmI3DVsd4GBVRuP4YnBnUnK22maKAfvGa8Pc9CALTsJCxu3Qxj0/exec")
     .then(response => response.text())
     .then(codigo => {
       document.getElementById("codigoResultado").textContent = codigo;
@@ -318,7 +318,7 @@ h2 {
   <script>
   async function generarCodigoLocal() {
     try {
-      const res = await fetch("https://script.google.com/macros/s/AKfycbyyyiThaG9Un1nBGQiP8aDBKhW0ARnVoPyV-OT27AUq7_XdXXkZrIdHr_UsLxZ2qNgd/exec"); 
+      const res = await fetch("https://script.google.com/macros/s/AKfycbxSAg5ozp5QcQONFnmI3DVsd4GBVRuP4YnBnUnK22maKAfvGa8Pc9CALTsJCxu3Qxj0/exec"); 
       const codigo = await res.text();
       document.getElementById("codigoResultado").textContent = codigo;
       document.getElementById("codigoInput").value = codigo; // Actualiza el hidden input con el nuevo código
@@ -447,7 +447,7 @@ h2 {
       };
 
       try {
-        const response = await fetch("https://script.google.com/macros/s/AKfycbyyyiThaG9Un1nBGQiP8aDBKhW0ARnVoPyV-OT27AUq7_XdXXkZrIdHr_UsLxZ2qNgd/exec", {
+        const response = await fetch("https://script.google.com/macros/s/AKfycbxSAg5ozp5QcQONFnmI3DVsd4GBVRuP4YnBnUnK22maKAfvGa8Pc9CALTsJCxu3Qxj0/exec", {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
