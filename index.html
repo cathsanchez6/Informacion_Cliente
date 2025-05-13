@@ -181,8 +181,14 @@ h2 {
 .boton-editar {
   background-color: #787E87;
 }
-    
+.campoBoton {
+  background-color: transparent;
+  padding: 0px;
+  font-weight: bold;
+  justify-content: flex-start;
+}
 .header-left {
+  background-color: #e9ecef;
   display: flex;
   justify-content: flex-end; 
   justify-content: space-between;
@@ -199,7 +205,7 @@ h2 {
          <div class="contenedor">
               <div>
                 <label>Código de solicitud:</label><br>
-                <div class="campo" style="bacground-color: transparent; justify-content: flex-start;">
+                <div class="campoBoton">
                   <button type="button" id="generarBtn" class="boton-codigo boton-nuevo">
                     Crear nuevo código
                   </button>
