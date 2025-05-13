@@ -324,6 +324,10 @@ h2 {
             <input type="file" id="logoInput" accept="image/png, image/jpeg" style="display: none; float: center;">
           </div>
           <hr>
+          <div id="infoArchivo" style="margin-top: 10px;">
+            <p id="mensajeCargado" style="color: green; margin: 0; display: none;">Imagen cargada</p>
+            <p id="archivoNombre" style="margin: 0;"></p>
+          </div>
           <div class="campo" id="previewContainer">
             <span id="archivoNombre">Ningún archivo cargado</span>     
             <img src="assets/ojo.svg"  style="width: 4%; height: 4%; padding: 2px 4px; cursor: pointer; float: right;"  onclick="verLogo()">
@@ -451,6 +455,9 @@ h2 {
 
   logoNombre = file.name;
   document.getElementById("archivoNombre").textContent = logoNombre;
+
+  const mensaje = document.getElementById("mensajeCargado");
+  mensaje.style.display = "block";
   
   const imgPreview = document.getElementById("logoPreview");
   const reader = new FileReader();
