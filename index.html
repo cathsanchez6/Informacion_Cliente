@@ -48,13 +48,6 @@
   overflow-y: auto;
   
 }
-
-@media (max-width: 768px) {
-  .formulario-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
 .contenedor-marco1 {
   background-color: #ffffff;
   border-radius: 10px;
@@ -193,7 +186,29 @@ h2 {
 }
 
 }
+@media (max-width: 768px) {
+  .formulario-grid {
+    grid-template-columns: 1fr; 
+  }
+  .columna-izquierda,
+  .columna-derecha {
+    max-height: none; 
+    overflow-y: visible;
+  }
+  .contenedor-marco1 {
+    padding: 15px; 
+  }
+  button {
+    padding: 8px 12px; 
+    font-size: 12px; 
+  }
+  .form-row input {
+    padding: 6px; 
+    font-size: 12px; 
+  }
+}
 
+}
 </style>
 </head>
 <body>
