@@ -331,7 +331,6 @@ h2 {
           </div>
           <hr>
           <div class="campo" id="previewContainer">
-            <label>Archivo cargado</label>
             <span id="archivoNombre">Ningún archivo cargado</span>     
             <img src="assets/ojo.svg"  style="width: 4%; height: 4%; padding: 2px 4px; cursor: pointer; float: right;"  onclick="verLogo()">
             <!--<img src="assets/ojo.svg"  style="width: 4%; height: 4%; padding: 2px 4px; cursor: pointer; float: right; filter: brightness(0%) invert(0%);"  onclick="verLogo()">-->
@@ -443,10 +442,11 @@ h2 {
   </script>
   <script>
   // Manejo del logo
-   let logoBlob = null; // Definir logoBlob fuera del ámbito del evento
-  let logoNombre = ""; // Definir logoNombre fuera del ámbito del evento
+    
+    let logoBlob = null; // Definir logoBlob fuera del ámbito del evento
+    let logoNombre = ""; // Definir logoNombre fuera del ámbito del evento
 
-document.getElementById("logoInput").addEventListener("change", function (e) {
+  document.getElementById("logoInput").addEventListener("change", function (e) {
   const file = e.target.files[0];
   if (!file) return;
 
