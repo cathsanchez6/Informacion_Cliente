@@ -456,8 +456,11 @@ h2 {
   }
 
   logoNombre = file.name;
+    nuevaFila.innerHTML = `
+        <label>Archivo cargado</label>
+      `;
   document.getElementById("archivoNombre").textContent = logoNombre;
-
+  
   const imgPreview = document.getElementById("logoPreview");
   const reader = new FileReader();
 
@@ -575,20 +578,6 @@ function descargarLogo() {
     reader.readAsDataURL(logoFile); // Convierte logo a Base64
   }
 </script>
-  <script>
-    document.querySelector(".add-btn").addEventListener("click", function () {
-      const nuevaFila = document.createElement("div");
-      nuevaFila.classList.add("form-row");
-      nuevaFila.innerHTML = `
-        <input type="text" placeholder="Dirección">
-        <input type="text" placeholder="Teléfono">
-        <input type="text" placeholder="Ciudad">
-        <button class="remove-btn" onclick="removeRow(this)">×</button>
-      `;
-      this.before(nuevaFila);
-    });
-  </script>
-
   <script>
     function agregarDireccion() {
   const container = document.createElement("div");
