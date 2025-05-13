@@ -173,11 +173,12 @@ h2 {
   color: white;
   border: none;
   display: flex;
-  align-items: left;
+  align-items: center;
   gap: 6px;
   cursor: pointer;
   white-space: nowrap;
   width: 200px;
+  height: 50px
 }
 
 .boton-nuevo {
@@ -283,7 +284,7 @@ h2 {
                 <label>Código de solicitud:</label>
                 <div class="campoBoton">
                   <button type="button" id="generarBtn" class="boton-codigo boton-nuevo">
-                    <img src="assets/cruz.svg" width="10%" height="10%" style="text-alingn: left;">
+                    <img src="assets/cruz.svg" width="15%" height="15%" style="text-alingn: left;">
                     Crear nuevo código
                   </button>
                 </div><br>
@@ -326,7 +327,7 @@ h2 {
           <div class="campo" id="previewContainer">
             <span id="archivoNombre">Ningún archivo cargado</span>
             
-            <img src="assets/basura.svg"  style="background-color: #000000; widt: 5%; height: 5%; cursor: pointer; float: right;"  onclick="eliminarLogo()">
+            <img src="assets/basura.svg"  style="fill: #000000; widt: 5%; height: 5%; cursor: pointer; float: right;"  onclick="eliminarLogo()">
             <!--<img src="assets/basura.svg" width="5%" height="5%" style="text-alingn: left;">-->
            <!-- <i class="fa fa-trash" style="margin-left: 10px; cursor: pointer; float: right;" onclick="eliminarLogo()"></i>-->
             <i class="fa fa-eye" style="margin-left: 10px; cursor: pointer; float: right;" onclick="verLogo()"></i>
