@@ -5,120 +5,225 @@
   <title>Formulario de Solicitud</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
-      body {
-      font-family: 'Segoe UI', sans-serif;
+    body {
       margin: 0;
-      padding: 40px;
-      background-color: #f8f9fa;
-    }
-
-    .formulario-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-      max-width: 1200px;
-      margin: auto;
-    }
-
-    .columna {
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background-size: cover;
+      background-repeat: no-repeat;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
-      gap: 20px;
-    }
-
-    .card {
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 16px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-    }
-
-    .card h3 {
-      margin-top: 0;
-      font-size: 18px;
-      font-weight: 600;
-    }
-
-    .botones {
-      display: flex;
-      gap: 10px;
-      margin-top: 10px;
-      flex-wrap: wrap;
-    }
-
-    button {
-      padding: 10px 15px;
-      font-size: 14px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-
-    .btn-azul {
-      background-color: #007bff;
-      color: white;
-    }
-
-    .btn-gris {
-      background-color: #6c757d;
-      color: white;
-    }
-
-    .btn-verde {
-      background-color: #28a745;
-      color: white;
-    }
-
-    input[type="text"],
-    textarea,
-    input[type="file"] {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      font-size: 14px;
-      margin-top: 5px;
-    }
-
-    .caja-resumen {
-      padding: 10px;
-      background-color: #f0f0f0;
-      border-radius: 8px;
-      text-align: center;
-      font-weight: bold;
-    }
-
-    .acciones-logo {
-      display: flex;
-      gap: 10px;
       align-items: center;
-      margin-top: 10px;
+      position: relative;
+      overflow-x: hidden;
     }
+.contenedor-principal {
+  max-width: 1200px;
+  width: 100%;
+  margin: auto;
+  padding: 25px 30px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10;
+}
 
-    .acciones-logo i {
-      cursor: pointer;
-    }
-    
+.formulario-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.columna-izquierda,
+.columna-derecha {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
 @media (max-width: 768px) {
   .formulario-grid {
     grid-template-columns: 1fr;
   }
 }
+
+.contenedor-marco1 {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  padding: 20px;
+}
+
+.contenedor {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 10px 0;
+}
+
+label {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.campo {
+  background-color: #e9ecef;
+  border-radius: 6px;
+  padding: 10px;
+  font-weight: bold;
+}
+.campo_logo {
+  background-color: #e9ecef;
+  border-radius: 6px;
+  padding: 10px;
+  font-weight: bold;
+  width: 10%;
+  height: 10%
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.form-row input {
+  flex: 1;
+  min-width: 120px;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.form-group textarea {
+  height: 80px;
+  resize: vertical;
+}
+
+button {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.add-btn {
+  background-color: #00AAE4;
+}
+
+.remove-btn {
+  background-color: #787E87;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 50%;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 15px 0;
+}
+
+h2 {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.botones-codigo {
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.boton-codigo {
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 6px;
+  color: white;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.boton-nuevo {
+  background-color: #007bff;
+}
+
+.boton-editar {
+  background-color: #349800;
+}
+
 </style>
 </head>
 <body>
 
+  <div class="contenedor-principal">
     <div class="formulario-grid">
       <div class="columna-izquierda">
-        <div class="card">
-        <h3>Código de solicitud:</h3>
-        <div class="botones">
-          <button type="button" class="btn-azul">Crear nuevo código</button>
-          <button type="button" class="btn-gris">Editar código existente</button>
+        <div class="contenedor-marco1">
+         <div class="contenedor">
+              <div>
+                <label>Código de solicitud:</label><br>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                  <button type="button" id="generarBtn" class="boton-codigo boton-nuevo">
+                    Crear nuevo código
+
+                  </button>
+                </div>
+                <br>
+              <div class="header">
+                <button class="boton-codigo boton-editarr">
+                 Editar código existente
+                </button>
+                <div class="form-row">
+                  <i class="fas fa-search"></i>
+                  <input type="text" placeholder="Digita el código">
+                </div>
+                <input type="hidden" name="codigoSolicitud" id="codigoInput" value="CI10001">
+              </div>
+            </div>
+            <div class="campo">
+            <label style="margin-top: 10px;">Código de solicitud:</label>
+              <div id="codigoResultado" style="font-weight: bold;"></div>
+          </div>
         </div>
-        <input type="text" placeholder="Digita el código">
-        <div class="caja-resumen">Código de solicitud: <span>----</span></div>
-      </div>
+        </div>
 
         <!-- Logo de la empresa -->
         <div class="contenedor-marco1">
@@ -128,10 +233,9 @@
             <img id="logoPreview" src="assets/logoempresa.jpg" width="50" height="30%" alt="logo_cintandina">
             </div>
             <label>Logo de la empresa</label>
-            <div class="botones-codigo">
-            <button class="boton-codigo" onclick="document.getElementById('logoInput').click()" style="background-color: #349800;">
+            <button type="button" onclick="document.getElementById('logoInput').click()" style="background-color: #349800;">
               <i class="fa fa-cloud-upload"></i> Seleccionar imagen
-            </button></div>
+            </button>
           
             <!-- Input de tipo archivo oculto -->
             <input type="file" id="logoInput" accept="image/png, image/jpeg" style="display: none;">
@@ -215,7 +319,8 @@
     </div>
 
    </div>
-    </div>
+  </div>
+</div>
 
   <script>
     function removeRow(btn) {
@@ -414,7 +519,6 @@ function descargarLogo() {
   document.querySelector(".add-btn").before(container);
 }
 
-  </script> 
+  </script>  
 </body>
 </html>
-
