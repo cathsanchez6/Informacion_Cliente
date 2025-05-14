@@ -344,13 +344,16 @@ h2 {
         <input type="number" id="cajasInput" placeholder="Ingrese cantidad de cajas" required oninput="actualizarCantidades()">
         </div>
         <div style="display: flex; gap: 10px;">
-          <div style="flex: 1; background-color: transparent; border: 1px solid  #787E87; border-radius: 10px; padding: 10px;">
-            <img src="assets/rollo.svg" style="width:25%; height:25%; padding: 0px; align-self:flex-start; margin-right: 0px;" ><br>
+          <div style="flex: 1; max-width: 180px; background-color: transparent; border: 1px solid  #787E87; border-radius: 10px; padding: 10px;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+            <img src="assets/rollo.svg" style="width: 30px; height: 30px;">
+            <div>
             <div style="font-size: 12px; color: #888;">Cantidad de rollos</div>
             <div id="rollosOutput" style="font-weight: bold; font-size: 18px;">0</div>
-            
+            </div>
           </div>
-        <div style="flex: 1; background-color: #eeeeee; border-radius: 10px; padding: 10px;">
+          </div>
+          <div style="flex: 1; max-width: 180px; background-color: transparent; border: 1px solid  #787E87; border-radius: 10px; padding: 10px;">
           <img src="assets/serial.svg" style="width:25%; height:25%; padding: 0px; align-self:flex-start; margin-right: 0px;" ><br>
           <div style="font-size: 12px; color: #888;">Cantidad de seriales</div>
           <div id="serialesOutput" style="font-weight: bold; font-size: 18px;">0</div>
