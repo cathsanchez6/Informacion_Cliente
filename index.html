@@ -325,24 +325,25 @@ h2 {
         <div class="contenedor">
           <h2>Logo de la empresa</h2>
           <div class="header">
-            <div class="campo_logo" style="text-align: center; display: flex; align-items: center; justify-content: center; width:200px; height:200px;">
-            <img id="logoPreview" src="assets/logoempresa.jpg" style="max-width: 100%; max-height: 100%;" alt="logo_cintandina">
-            </div>
-            <button type="button" onclick="document.getElementById('logoInput').click()" style="background-color: #057a55;">
-              <i class="fa fa-cloud-upload"></i> Seleccionar imagen
-            </button>
-          
-            <!-- Input de tipo archivo oculto -->
-            <input type="file" id="logoInput" accept="image/png, image/jpeg" style="display: none; float: center;">
-          </div>
-          <hr>
-          <div id="infoArchivo" style="margin-top: 10px;">
-            <label id="mensajeCargado" style="color: #000000; margin: 0; display: none;">Imagen cargada</label>
-             <div  class="campo" id="mensajeCargado" >
-            <!--<span id="archivoNombre">Ningún archivo cargado</span>-->
-            <img src="assets/ojo.svg"  style="width: 3.5%; height: 3.5%; padding: 4px 4px; cursor: pointer; float: right;"  onclick="verLogo()">
-            <img src="assets/descarga.svg"  style="width: 3.5%; height: 3.5%; padding: 4px 4px; cursor: pointer; float: right;"   onclick="descargarLogo()">
-            <img src="assets/basura.svg"  style="width: 3.5%; height: 3.5%; padding: 4px 4px; cursor: pointer; float: right; "  onclick="eliminarLogo()">
+            <div class="campo_logo" style="text-align: center; display: flex; align-items: center; justify-content: center; width:200px; height:100px;">
+                <img id="logoPreview" src="assets/logoempresa.jpg" style="max-width: 100%; max-height: 100%;" alt="logo_cintandina">
+              </div>
+  
+              <button type="button" onclick="document.getElementById('logoInput').click()" style="background-color: #057a55;">
+                <i class="fa fa-cloud-upload"></i> Seleccionar imagen
+              </button>
+              
+              <!-- Input de tipo archivo oculto -->
+              <input type="file" id="logoInput" accept="image/png, image/jpeg" style="display: none; float: center;">
+              
+              <hr>
+              
+              <div id="infoArchivo" style="margin-top: 10px;">
+                <label id="mensajeCargadoLabel" style="color: #000000; margin: 0; display: none;">Imagen cargada</label>
+                <div class="campo" id="campoIconos" style="display: none;"> <!-- Agregado estilo para ocultar inicialmente -->
+                  <img src="assets/ojo.svg" style="width: 3.5%; height: 3.5%; padding: 4px 4px; cursor: pointer; float: right;" onclick="verLogo()">
+                  <img src="assets/descarga.svg" style="width: 3.5%; height: 3.5%; padding: 4px 4px; cursor: pointer; float: right;" onclick="descargarLogo()">
+                  <img src="assets/basura.svg" style="width: 3.5%; height: 3.5%; padding: 4px 4px; cursor: pointer; float: right;" onclick="eliminarLogo()">
           </div>
           </div>         
         </div>
@@ -469,9 +470,13 @@ h2 {
 
   logoNombre = file.name;
   document.getElementById("archivoNombre").textContent = logoNombre;
+  document.getElementById("mensajeCargadoLabel").style.display = "block";
+  document.getElementById("campoIconos").style.display = "block"; // Mostrar iconos de acción
+  
 
-  const mensaje = document.getElementById("mensajeCargado");
-  mensaje.style.display = "block";
+
+  //const mensaje = document.getElementById("mensajeCargado");
+ // mensaje.style.display = "block";
   
   const imgPreview = document.getElementById("logoPreview");
   const reader = new FileReader();
