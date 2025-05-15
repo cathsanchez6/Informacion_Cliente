@@ -229,6 +229,7 @@ h2 {
   .formulario-grid {
     grid-template-columns: 1fr;
     gap: 10px; 
+    height: auto;
   }
   .contenedor-principal {
     padding: 15px;
@@ -236,23 +237,32 @@ h2 {
   .columna-izquierda,
   .columna-derecha {
     width: 100% !important;
+    max-height: none;
+    overflow-y: visible;
   }
   .contenedor-marco1 {
     padding: 15px; 
   }
-  button {
-    padding: 8px 12px; 
-    font-size: 12px; 
-  }
-  .form-row {
-    width: 100%;
-  }
-  .form-row input {
-    padding: 6px;
+.boton-codigo {
     font-size: 12px;
+    width: 100%; /* Asegura que se ajusten a pantalla */
+    height: auto;
+    justify-content: center;
   }
+
+  .campoBoton_Logo {
+    padding: 10px;
+    width: 100%;
+  }
+
+  .form-row {
+    flex-direction: column;
+    gap: 6px;
+  }
+
   .form-row input {
     width: 100%;
+    min-width: unset;
   }
  label {
     font-size: 16px;
