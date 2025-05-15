@@ -236,16 +236,22 @@ h2 {
     gap: 10px;
   }*/
 
+  
+#input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
   .form-row {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr) auto;
+    display: flex;
     gap: 13px;
     align-items: center;
   }
 
   .form-row input {
+    flex: 1;
     padding: 8px;
-    width: 100%;
     box-sizing: border-box;
   }
 
@@ -256,6 +262,21 @@ h2 {
     padding: 6px 10px;
     cursor: pointer;
     border-radius: 4px;
+  }
+
+  .add-btn {
+    margin-top: 15px;
+    padding: 10px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .add-btn img {
+    width: 16px;
+    height: 16px;
+    margin-right: 6px;
   }
 
     
@@ -459,22 +480,19 @@ h2 {
         <div class="form-group">
           <label for="nit">NIT</label>
           <input type="text" id="nit">
+        </div>   
+        <div id="input-container">
+          <div class="form-row">
+            <input type="text" placeholder="Dirección 1">
+            <input type="text" placeholder="Teléfono 1">
+            <input type="text" placeholder="Ciudad 1">
+            <button class="remove-btn" onclick="removeRow(this)">X</button>
+          </div>
         </div>
         
-      <div id="input-container" class="form-grid">
-        <div class="form-row">
-          <input type="text" placeholder="Dirección 1">
-          <input type="text" placeholder="Teléfono 1">
-          <input type="text" placeholder="Ciudad 1">
-        </div>
-      </div>
-      
-      <button class="add-btn" onclick="agregarDireccion()">
-        <img src="assets/cruz.svg"> Agregar dirección
-      </button>
-
-
-        
+        <button class="add-btn" onclick="agregarDireccion()">
+          <img src="assets/cruz.svg"> Agregar dirección
+        </button>        
         <hr>
         <div class="form-group">
           <label for="correo">Correo Electrónico</label>
@@ -677,25 +695,25 @@ function descargarLogo() {
   }
 </script>
   <script>
-    function agregarDireccion() {
-      const container = document.getElementById("input-container");
-  
-      const row = document.createElement("div");
-      row.className = "form-row";
-  
-      row.innerHTML = `
-        <input type="text" placeholder="Dirección">
-        <input type="text" placeholder="Teléfono">
-        <input type="text" placeholder="Ciudad">
-        <button class="remove-btn" onclick="removeRow(this)">X</button>
-      `;
-  
-      container.appendChild(row);
-    }
-  
-    function removeRow(button) {
-      button.parentElement.remove();
-    }
+  function agregarDireccion() {
+    const container = document.getElementById("input-container");
+
+    const row = document.createElement("div");
+    row.className = "form-row";
+
+    row.innerHTML = `
+      <input type="text" placeholder="Dirección">
+      <input type="text" placeholder="Teléfono">
+      <input type="text" placeholder="Ciudad">
+      <button class="remove-btn" onclick="removeRow(this)">X</button>
+    `;
+
+    container.appendChild(row);
+  }
+
+  function removeRow(button) {
+    button.parentElement.remove();
+  }
   </script>  
 </body>
 </html>
