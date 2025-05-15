@@ -330,20 +330,16 @@ h2 {
             </div>
             <button type="button" onclick="document.getElementById('logoInput').click()" style="background-color: #057a55;">
               <i class="fa fa-cloud-upload"></i> Seleccionar imagen
-            </button>
-          
-              
-              <!-- Input de tipo archivo oculto -->
-              <input type="file" id="logoInput" accept="image/png, image/jpeg" style="display: none; float: center;">
+            </button>              
           </div>
-              <hr>
-              
+              <hr>              
               <div id="infoArchivo" style="margin-top: 10px;">
                 <label id="mensajeCargadoLabel" style="color: #000000; margin: 0; display: none;">Imagen cargada</label>
                 <span id="archivoNombre" style="color: #333; font-weight: 500;"></span>  
               </div>  
                       
-            <div class="campo" id="campoIconos" style="display: none;"> <!-- Agregado estilo para ocultar inicialmente -->
+            <div class="campo" id="campoIconos" style="display: none;">
+                  <input type="file" id="logoInput" accept="image/png, image/jpeg" style="display: none; float: center;">
                   <img src="assets/ojo.svg" style="width: 3.5%; height: 3.5%; padding: 4px 4px; cursor: pointer; float: right;" onclick="verLogo()">
                   <img src="assets/descarga.svg" style="width: 3.5%; height: 3.5%; padding: 4px 4px; cursor: pointer; float: right;" onclick="descargarLogo()">
                   <img src="assets/basura.svg" style="width: 3.5%; height: 3.5%; padding: 4px 4px; cursor: pointer; float: right;" onclick="eliminarLogo()">
