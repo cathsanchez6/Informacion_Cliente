@@ -340,7 +340,8 @@ h2 {
               
               <div id="infoArchivo" style="margin-top: 10px;">
                 <label id="mensajeCargadoLabel" style="color: #000000; margin: 0; display: none;">Imagen cargada</label>
-          </div>         
+                <span id="archivoNombre" style="color: #333; font-weight: 500;"></span>     
+              </div>         
             <div class="campo" id="campoIconos" style="display: none;"> <!-- Agregado estilo para ocultar inicialmente -->
                   <img src="assets/ojo.svg" style="width: 3.5%; height: 3.5%; padding: 4px 4px; cursor: pointer; float: right;" onclick="verLogo()">
                   <img src="assets/descarga.svg" style="width: 3.5%; height: 3.5%; padding: 4px 4px; cursor: pointer; float: right;" onclick="descargarLogo()">
@@ -493,7 +494,10 @@ function eliminarLogo() {
   logoBlob = null;
   logoNombre = "";
   document.getElementById("logoInput").value = "";
-  document.getElementById("archivoNombre").textContent = "Ningún archivo cargado";
+  document.getElementById("logoPreview").src = "assets/logoempresa.jpg"; // Restaurar imagen por defecto
+  document.getElementById("mensajeCargadoLabel").style.display = "none";
+  document.getElementById("archivoNombre").textContent = "";
+  document.getElementById("campoIconos").style.display = "none";
 }
 
 function verLogo() {
