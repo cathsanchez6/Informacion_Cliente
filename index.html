@@ -214,12 +214,7 @@ h2 {
       margin-bottom: 8px;
       padding-top: 0px; 
       padding-bottom: 2px;
-}
-    .campoDatos{
-      background-color: transparent;
-      margin: 2px 20px auto auto;
-    }
-    
+}    
     
 @media (max-width: 768px) {
   .formulario-grid {
@@ -422,12 +417,12 @@ h2 {
           <label for="nit">NIT</label>
           <input type="text" id="nit">
         </div>
-        <div class="form-row">
-          <div class="campoDatos">
-          <input type="text" placeholder="Dirección 1">
-          <input type="text" placeholder="Teléfono 1">
-          <input type="text" placeholder="Ciudad 1"></div>
-        <button class="add-btn" onclick="agregarDireccion()" style="width:100%; align-self: center; align-items: center; justify-content: center;"><img src="assets/cruz.svg" style="width:16px; height:16px;">Agregar dirección</button> 
+        <div class="form-row" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items: center;">
+          <input type="text" placeholder="Dirección 1" style="width: 100%; box-sizing: border-box; padding: 8px;">
+          <input type="text" placeholder="Teléfono 1" style="width: 100%; box-sizing: border-box; padding: 8px;">
+          <input type="text" placeholder="Ciudad 1" style="width: 100%; box-sizing: border-box; padding: 8px;">
+        <button class="add-btn" onclick="agregarDireccion()" style="width:100%; padding: 8px; align-self: center; display: flex; align-items: center; justify-content: center;">
+          <img src="assets/cruz.svg" style="width:16px; height:16px;">Agregar dirección</button> 
         </div>
         <hr>
         <div class="form-group">
