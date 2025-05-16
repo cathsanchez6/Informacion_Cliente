@@ -48,7 +48,7 @@
   background-color: transparent;
   display: grid;
   border-radius: 10px;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 0.7fr 2fr;
   gap: 20px;
   width: 100%;
   height: auto;
@@ -472,21 +472,46 @@ h2 {
   </div>
 </div>
      <div class="columna-espejo"> <!-- NUEVO: Formulario espejo -->
-    <div class="contenedor-marco1">
-      <div class="contenedor">
-        <h2>Vista previa en tiempo real</h2>
-        <div><strong>Razón social:</strong> <span id="previewRazon"></span></div>
-        <div><strong>NIT:</strong> <span id="previewNIT"></span></div>
-        <div><strong>Sobre nosotros:</strong><br><span id="previewSobre"></span></div>
-        <div><strong>Correo:</strong> <span id="previewCorreo"></span></div>
-        <div><strong>Página web:</strong> <span id="previewPagina"></span></div>
-        <div><strong>Link adicional:</strong> <span id="previewLink"></span></div>
-        <div><strong>Cantidad de cajas:</strong> <span id="previewCajas"></span></div>
-        <div><strong>Rollos:</strong> <span id="previewRollos"></span></div>
-        <div><strong>Seriales:</strong> <span id="previewSeriales"></span></div>
-        <div><strong>Logo cargado:</strong><br><img id="previewLogo" style="max-width: 100px; height: auto;"></div>
+     <div class="contenedor-principal">
+      <div class="logo" style="text-align: center; display: flex; align-items: center; justify-content: center; width:200px; height:200px;">
+        <img id="logoPreview" src="${data.logo}" alt="logo_cintandina" style="text-align: center; width:100%; height:100%;">
+      </div>
+      <div class="texto-justificado">
+        <strong style="font-size: 18px;">Sobre Nosotros</strong><br>
+        <div class="campo" style="background-color: transparent;">${data.sobre}</div>
+      </div>
+      <br>
+      <div class="contenedor-marco">
+        <div class="formulario">
+          <label>Razón Social:</label>
+          <div class="campo">${data.razon}</div>
+          <label>NIT:</label>
+          <div class="campo">${data.nit}</div>
+          <label>Dirección:</label>
+          <div class="campo">${data.direccion}</div>
+          <div class="fila-datos">
+            <div class="grupo-dato">
+              <label>Teléfono:</label>
+              <div class="campo">${data.telefono}</div>
+            </div>
+            <div class="grupo-dato">
+              <label>Ciudad:</label>
+              <div class="campo">${data.ciudad}</div>
+            </div>
+          </div>
+          <label>Correo Electrónico:</label>
+          <div class="campo">${data.correo}</div>
+          <label>Página Web:</label>
+          <div class="campo">${data.pagina}</div>
+          <div id="mas-informacion">
+            <label>Más información:</label>
+            <div class="campo">${data.link}</div>
+          </div>
+        </div>
       </div>
     </div>
+  `;
+}
   </div>
   </div>
   <script>
@@ -820,7 +845,21 @@ function descargarLogo() {
     reader.readAsDataURL(file);
   });
 </script>
+<script>
+  actualizarEspejo({
+  logo: 'assets/logoempresa.jpg',
+  sobre: 'Somos una empresa comprometida con la seguridad vial.',
+  razon: 'CINTANDINA S.A.S.',
+  nit: '123456789-0',
+  direccion: 'Cra 123 #45-67',
+  telefono: '3001234567',
+  ciudad: 'Bogotá',
+  correo: 'info@cintandina.com',
+  pagina: 'www.cintandina.com',
+  link: 'https://cintandina.com/mas-informacion'
+});
 
+</script>
 
 </body>
 </html>
