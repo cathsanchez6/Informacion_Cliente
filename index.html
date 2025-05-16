@@ -37,7 +37,18 @@
   background-color: transparent;
   display: grid;
   border-radius: 10px;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  width: 100%;
+  height: auto;
+  box-sizing: border-box;
+  height: 85vh;
+}
+    .formulario-grid-espejo {
+  background-color: transparent;
+  display: grid;
+  border-radius: 10px;
+  grid-template-columns: 1fr 1fr;
   gap: 20px;
   width: 100%;
   height: auto;
@@ -321,6 +332,7 @@ h2 {
 <body>
 
   <div class="contenedor-principal">
+    <div class="formulario-grid-espejo">
     <button type="button" style="background-color: #057a55; width:95%; font-size: 22px; text-align: center; display: flex; align-items: center; justify-content: center; cursor: default;">
       <img src="assets/solicitud.svg" style="width:35px; height:35px;">Crear nueva solicitud
       </button>
@@ -475,7 +487,7 @@ h2 {
   </div>
   </div>
 </div>
-
+  </div>
   <script>
     function removeRow(btn) {
       btn.parentElement.remove();
