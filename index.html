@@ -717,6 +717,26 @@ function descargarLogo() {
     }
   });
 </script>
+  <script>
+    document.getElementById("crearBtn").addEventListener("click", function () {
+  const datosFormulario = {
+    sobre: document.getElementById("sobre").value,
+    razon: document.getElementById("razon").value,
+    nit: document.getElementById("nit").value,
+    correo: document.getElementById("correo").value,
+    pagina: document.getElementById("pagina").value,
+    link: document.getElementById("link").value,
+    direccion: document.querySelectorAll(".form-row input")[0]?.value || "",
+    telefono: document.querySelectorAll(".form-row input")[1]?.value || "",
+    ciudad: document.querySelectorAll(".form-row input")[2]?.value || ""
+  };
+
+  localStorage.setItem("datosLanding", JSON.stringify(datosFormulario));
+
+  // Redirige o informa que los datos están listos para mostrarse
+});
+
+  </script>
 
 </body>
 </html>
