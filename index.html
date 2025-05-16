@@ -343,6 +343,59 @@ h2 {
     align-items: center;
     justify-content: center;
   }
+   .boton-espejo {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #057a55;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    cursor: pointer;
+  }
+   .columna-espejo {
+    display: none;
+  }
+
+  .modal-espejo {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.6);
+  }
+
+  .contenido-modal {
+    background-color: white;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+  }
+
+  .cerrar-modal {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+  }
 }
 </style>
 </head>
@@ -796,6 +849,43 @@ function descargarLogo() {
         reader.readAsDataURL(file);
       }
     });
+</script>
+<button id="botonEspejo" class="boton-espejo">
+  <i class="fas fa-eye"></i>
+</button>
+
+<!-- Modo  del espejo en pantallas pequeñas -->
+<div id="modalEspejo" class="modal-espejo">
+  <div class="contenido-modal">
+    <span class="cerrar-modal">&times;</span>
+    <div id="contenidoEspejoClonado"></div>
+  </div>
+</div>
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const botonEspejo = document.getElementById("botonEspejo");
+    const modalEspejo = document.getElementById("modalEspejo");
+    const cerrarModal = modalEspejo.querySelector(".cerrar-modal");
+    const contenidoOriginal = document.querySelector(".columna-espejo");
+    const contenidoClonado = document.getElementById("contenidoEspejoClonado");
+
+    // Clona el contenido del espejo una vez
+    contenidoClonado.innerHTML = contenidoOriginal.innerHTML;
+
+    botonEspejo.addEventListener("click", () => {
+      modalEspejo.style.display = "block";
+    });
+
+    cerrarModal.addEventListener("click", () => {
+      modalEspejo.style.display = "none";
+    });
+
+    window.addEventListener("click", (event) => {
+      if (event.target === modalEspejo) {
+        modalEspejo.style.display = "none";
+      }
+    });
+  });
 </script>
 
 </body>
