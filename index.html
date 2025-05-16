@@ -484,34 +484,34 @@ h2 {
 
     <div class="texto-justificado" style="text-align: center; display: flex; align-items: center; justify-content: center;">
       <strong style="font-size: 18px;">Sobre Nosotros</strong><br>
-       <div class="campo"  id="espejoSobre" style="background-color: transparent;"></div>
+      <div class="campo"><span id="espejoSobre"></span></div>
     </div>
     <br>
     <div class="contenedor-marco" style="background-color: white; border-radius: 25px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); padding: 40px 20px 20px 20px; width: 90%; max-width: 500px; z-index: 10; margin-bottom: 10px; overflow: hidden; ">
       <div class="formulario">
         <label>Razón Social:</label>
-        <div class="campo" id="espejoRazon"></div>
+        <div class="campo"><span id="espejoRazon"></span></div>
         <label>NIT:</label>
-        <div class="campo" id="espejoNit></div>
+        <div class="campo"><span id="espejoNit"></span></div>
         <label>Dirección:</label>
-        <div class="campo" id="espejoDireccion"></div>
+        <div class="campo"><span id="espejoDireccion"></span></div>
         <div class="fila-datos">
           <div class="grupo-dato">
             <label>Teléfono:</label>
-            <div class="campo" id="espejoTelefono"></div>
+            <div class="campo"><span id="espejoTelefono"></span></div>
           </div>
           <div class="grupo-dato">
             <label>Ciudad:</label>
-            <div class="campo" id="espejoCiudad"></div>
+            <div class="campo"><span id="espejoCiudad"></span></div>
           </div>
         </div>
         <label>Correo Electrónico:</label>
-        <div class="campo" id="espejoCorreo"></div>
+        <div class="campo"><span id="espejoCorreo"></span></div>
         <label>Página Web:</label>
-        <div class="campo" id="espejoPagina"></div>
+        <div class="campo"><span id="espejoPagina"></span></div>
         <div id="mas-informacion">
           <label>Más información:</label>
-          <div class="campo" id="espejoLink"></div>
+          <div class="campo"><span id="espejoLink"></span></div>
         </div>
       </div>
       <br>
@@ -730,17 +730,27 @@ function descargarLogo() {
    <script>
   // Actualización de campos en tiempo real - formulario espejo 
      document.addEventListener("DOMContentLoaded", function () {
-       const camposEspejo = [
-        { inputId: "sobre", espejoId: "espejoSobre" },
-        { inputId: "razon", espejoId: "espejoRazon" },
-        { inputId: "nit", espejoId: "espejoNit" },
-         {inputId: "direccion", espejoId= "espejoDireccion"},
-         {inputId: "telefono", espejoId= "espejoTelefono"},
-       {inputID: "ciudad", espejo Id= "espejoCiudad"},
-        { inputId: "correo", espejoId: "espejoCorreo" },
-        { inputId: "pagina", espejoId: "espejoPagina" },
-        { inputId: "link", espejoId: "espejoLink" }
-      ];
+       function sincronizarInput(inputId, espejoId) {
+        const input = document.getElementById(inputId);
+        const espejo = document.getElementById(espejoId);
+    
+        if (input && espejo) {
+          input.addEventListener('input', () => {
+            espejo.textContent = input.value;
+          });
+        }
+      }
+
+       sincronizarInput('sobre', 'espejoSobre');
+        sincronizarInput('razon', 'espejoRazon');
+        sincronizarInput('nit', 'espejoNit');
+       sincronizarInput('direccion', 'espejoDireccion');
+       sincronizarInput('telefono', 'espejoTelefono');
+       sincronizarInput('ciudad', 'espejoCiudad');
+       sincronizarInput('correo', 'espejoCorreo');
+        sincronizarInput('pagina', 'espejoPagina');
+        sincronizarInput('link', 'espejoLink');
+       
   // Vista previa del logo
       document.getElementById("logoInput").addEventListener("change", function (e) {
         const file = e.target.files[0];
