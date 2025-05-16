@@ -37,7 +37,7 @@
   background-color: transparent;
   display: grid;
   border-radius: 10px;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 20px;
   width: 100%;
   height: auto;
@@ -218,7 +218,14 @@ h2 {
       margin-bottom: 8px;
       padding-top: 0px; 
       padding-bottom: 2px;
-}    
+}   
+    .columna-espejo {
+  background-color: #f5f5f5;
+  border-left: 1px solid #ccc;
+  padding: 15px;
+  overflow-y: auto;
+  max-height: 83vh;
+}
     
 @media (max-width: 768px) {
   .formulario-grid {
@@ -449,6 +456,23 @@ h2 {
     </div>
 
    </div>
+      <div class="columna-espejo"> <!-- NUEVO: Formulario espejo -->
+    <div class="contenedor-marco1">
+      <div class="contenedor">
+        <h2>Vista previa en tiempo real</h2>
+        <div><strong>Razón social:</strong> <span id="previewRazon"></span></div>
+        <div><strong>NIT:</strong> <span id="previewNIT"></span></div>
+        <div><strong>Sobre nosotros:</strong><br><span id="previewSobre"></span></div>
+        <div><strong>Correo:</strong> <span id="previewCorreo"></span></div>
+        <div><strong>Página web:</strong> <span id="previewPagina"></span></div>
+        <div><strong>Link adicional:</strong> <span id="previewLink"></span></div>
+        <div><strong>Cantidad de cajas:</strong> <span id="previewCajas"></span></div>
+        <div><strong>Rollos:</strong> <span id="previewRollos"></span></div>
+        <div><strong>Seriales:</strong> <span id="previewSeriales"></span></div>
+        <div><strong>Logo cargado:</strong><br><img id="previewLogo" style="max-width: 100px; height: auto;"></div>
+      </div>
+    </div>
+  </div>
   </div>
 </div>
 
@@ -737,6 +761,53 @@ function descargarLogo() {
 });
 
   </script>
+  <script>
+  // Actualización de campos en tiempo real+
+   document.getElementById('sobre').addEventListener('input', () => {
+    document.getElementById('previewSobre').textContent = document.getElementById('sobre').value;
+  });
+  document.getElementById('razon').addEventListener('input', () => {
+    document.getElementById('previewRazon').textContent = document.getElementById('razon').value;
+  });
+
+  document.getElementById('nit').addEventListener('input', () => {
+    document.getElementById('previewNIT').textContent = document.getElementById('nit').value;
+  });
+  document.getElementById('direccion').addEventListener('input', () => {
+    document.getElementById('previewNIT').textContent = document.getElementById('direccion').value;
+  });
+    document.getElementById('telefono').addEventListener('input', () => {
+  document.getElementById('previewNIT').textContent = document.getElementById('telefono').value;
+});
+    document.getElementById('ciudad').addEventListener('input', () => {
+  document.getElementById('previewNIT').textContent = document.getElementById('ciudad').value;
+});
+  document.getElementById('correo').addEventListener('input', () => {
+    document.getElementById('previewCorreo').textContent = document.getElementById('correo').value;
+  });
+
+  document.getElementById('pagina').addEventListener('input', () => {
+    document.getElementById('previewPagina').textContent = document.getElementById('pagina').value;
+  });
+
+  document.getElementById('link').addEventListener('input', () => {
+    document.getElementById('previewLink').textContent = document.getElementById('link').value;
+  });
+
+
+  // Vista previa del logo
+  document.getElementById("logoInput").addEventListener("change", function (e) {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      document.getElementById("previewLogo").src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
+</script>
+
 
 </body>
 </html>
