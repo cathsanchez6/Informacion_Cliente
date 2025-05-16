@@ -445,7 +445,7 @@ h2 {
         <div class="form-row" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items: center;">
           <input type="text" id="direccion" placeholder="Dirección" style="width: 138px;">
           <input type="text" id="telefono" placeholder="Teléfono" style="width: 138px;">
-          <input type="text" id="correo" placeholder="Ciudad" style="width: 138px; margin-right: 40px;" ></div>
+          <input type="text" id="ciudad" placeholder="Ciudad" style="width: 138px; margin-right: 40px;" ></div>
           <button class="add-btn" onclick="agregarDireccion()" style="width: 100%; padding: 10px; display: flex; align-items: center; justify-content: center;">
             <img src="assets/cruz.svg" style="width: 16px; height: 16px; margin-right: 6px;">Agregar dirección
           </button>
@@ -746,6 +746,7 @@ function descargarLogo() {
        sincronizarInput('correo', 'espejoCorreo');
         sincronizarInput('pagina', 'espejoPagina');
         sincronizarInput('link', 'espejoLink');
+       
       document.getElementById('direccion').addEventListener('input', function () {
         document.getElementById('espejoDireccion').textContent = this.value;
       });
