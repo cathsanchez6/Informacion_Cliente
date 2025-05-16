@@ -646,5 +646,77 @@ function descargarLogo() {
       }
 
   </script>  
+  <script>
+  document.getElementById("crearBtn").addEventListener("click", async function crearSolicitud() {
+    const codigo = document.getElementById("codigoInput").value || "";
+    const cajas = parseInt(document.getElementById("cajasInput").value) || 0;
+    const rollos = cajas * 36;
+    const seriales = cajas * 544;
+
+    const sobre = document.getElementById("sobre").value;
+    const razon = document.getElementById("razon").value;
+    const nit = document.getElementById("nit").value;
+    const correo = document.getElementById("correo").value;
+    const pagina = document.getElementById("pagina").value;
+    const link = document.getElementById("link").value;
+
+    // Recopilar direcciones (puede haber más de una)
+    const direccionInputs = document.querySelectorAll(".form-row");
+    const direcciones = [];
+    direccionInputs.forEach(row => {
+      const inputs = row.querySelectorAll("input");
+      if (inputs.length === 3) {
+        direcciones.push({
+          direccion: inputs[0].value,
+          telefono: inputs[1].value,
+          ciudad: inputs[2].value
+        });
+      }
+    });
+
+    // Convertir el logo si fue cargado
+    let base64Logo = "";
+    if (logoBlob) {
+      base64Logo = await convertirLogoABase64(logoBlob);
+    }
+
+    const datos = {
+      codigo,
+      logo: base64Logo,
+      cantidadCajas: cajas,
+      cantidadRollos: rollos,
+      seriales,
+      sobre,
+      razon,
+      nit,
+      direccion1: direcciones[0]?.direccion || "",
+      telefono1: direcciones[0]?.telefono || "",
+      ciudad1: direcciones[0]?.ciudad || "",
+      direccion2: direcciones[1]?.direccion || "",
+      telefono2: direcciones[1]?.telefono || "",
+      ciudad2: direcciones[1]?.ciudad || "",
+      correo,
+      web: pagina,
+      link
+    };
+
+    try {
+      const response = await fetch("https://script.google.com/macros/s/AKfycbxaLLPHgPWC51oNNaNWCKMGhjvpdR4oy6522YDSbiStDDuSUqPsNcBDmJOT701xXub4/exec", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(datos)
+      });
+
+      const resultado = await response.json();
+      alert("Solicitud creada con código: " + resultado.codigoGenerado);
+      document.getElementById("codigoResultado").textContent = resultado.codigoGenerado;
+      document.getElementById("codigoInput").value = resultado.codigoGenerado;
+    } catch (error) {
+      console.error("Error al enviar los datos:", error);
+      alert("Error al enviar solicitud.");
+    }
+  });
+</script>
+
 </body>
 </html>
