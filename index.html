@@ -758,22 +758,30 @@ function descargarLogo() {
       
       document.getElementById('ciudad').addEventListener('input', function () {
         document.getElementById('espejoCiudad').textContent = this.value;
-      });
-       
-  // Vista previa del logo
-      document.getElementById("logoInput").addEventListener("change", function (e) {
-        const file = e.target.files[0];
-        if (file) {
-    const reader = new FileReader();
-    reader.onload = function (e) {
-      document.getElementById('logoPreview').src = e.target.result;
-      document.getElementById('logoEspejo').src = e.target.result;
-    };
-    reader.readAsDataURL(file);
-  }
-    
-  });      
 });     
 </script>
+  <script>
+    document.getElementById('logoInput').addEventListener('change', function(event) {
+      const file = event.target.files[0];
+      const preview = document.getElementById('logoPreview');
+      const espejo = document.getElementById('logoEspejo');
+      const mensajeCargado = document.getElementById('mensajeCargadoLabel');
+      const campoIconos = document.getElementById('campoIconos');
+      const archivoNombre = document.getElementById('archivoNombre');
+    
+      if (file && file.type.match('image.*')) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          preview.src = e.target.result;
+          espejo.src = e.target.result;
+          mensajeCargado.style.display = 'block';
+          campoIconos.style.display = 'block';
+          archivoNombre.textContent = file.name;
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+</script>
+
 </body>
 </html>
