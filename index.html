@@ -443,9 +443,9 @@ h2 {
         </div>
         <hr>
         <div class="form-row" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items: center;">
-          <input type="text" placeholder="Dirección" style="width: 138px;">
-          <input type="text" placeholder="Teléfono" style="width: 138px;">
-          <input type="text" placeholder="Ciudad" style="width: 138px; margin-right: 40px;" ></div>
+          <input type="text" id="direccion" placeholder="Dirección" style="width: 138px;">
+          <input type="text" id="telefono" placeholder="Teléfono" style="width: 138px;">
+          <input type="text" id="correo" placeholder="Ciudad" style="width: 138px; margin-right: 40px;" ></div>
           <button class="add-btn" onclick="agregarDireccion()" style="width: 100%; padding: 10px; display: flex; align-items: center; justify-content: center;">
             <img src="assets/cruz.svg" style="width: 16px; height: 16px; margin-right: 6px;">Agregar dirección
           </button>
@@ -477,14 +477,14 @@ h2 {
      <div class="columna-espejo" style="background-image: url('assets/FONDO_CINTA_DE_SEGURIDAD_INTELIGENTE-01.png'); background-size: cover;background-position: center; height: 100vh;margin: 0; "> 
      <div class="contenedor-principal">
     <div class="logo" style="text-align: center; display: flex; align-items: center; justify-content: center; width:100px; height:100px;">
-      <br><img id="logoPreview" src="assets/logoempresa.jpg" style="text-align: center; width:100%; height:100%;" alt="logo_cintandina">
+      <br><img id="logoEspejo" src="assets/logoempresa.jpg" style="text-align: center; width:100%; height:100%;" alt="logo_cintandina">
       <br>
       <br>
     </div>
 
       <div class="texto-justificado" style="text-align: center; display: flex; align-items: center; justify-content: center;">
       <strong style="font-size: 18px;">Sobre Nosotros</strong>
-       <div class="campo" style="background-color: transparent;" ><span id="espejoSobre"></span></div>
+       <div class="campo" style="background-color: transparent;"><p><span id="espejoSobre"></span></p></div>
        </div>
     <br>
     <div class="contenedor-marco" style="background-color: white; border-radius: 25px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); padding: 40px 20px 20px 20px; width: 90%; max-width: 500px; z-index: 10; margin-bottom: 10px; overflow: hidden; ">
@@ -740,37 +740,37 @@ function descargarLogo() {
           });
         }
       }
-
        sincronizarInput('sobre', 'espejoSobre');
         sincronizarInput('razon', 'espejoRazon');
         sincronizarInput('nit', 'espejoNit');
-       sincronizarInput('direccion', 'espejoDireccion');
-       sincronizarInput('telefono', 'espejoTelefono');
-       sincronizarInput('ciudad', 'espejoCiudad');
        sincronizarInput('correo', 'espejoCorreo');
         sincronizarInput('pagina', 'espejoPagina');
         sincronizarInput('link', 'espejoLink');
+      document.getElementById('direccion').addEventListener('input', function () {
+        document.getElementById('espejoDireccion').textContent = this.value;
+      });
+      
+      document.getElementById('telefono').addEventListener('input', function () {
+        document.getElementById('espejoTelefono').textContent = this.value;
+      });
+      
+      document.getElementById('ciudad').addEventListener('input', function () {
+        document.getElementById('espejoCiudad').textContent = this.value;
+      });
        
   // Vista previa del logo
       document.getElementById("logoInput").addEventListener("change", function (e) {
         const file = e.target.files[0];
-        if (!file) return;
-
+        if (file) {
     const reader = new FileReader();
     reader.onload = function (e) {
-      document.getElementById("previewLogo").src = e.target.result;
+      document.getElementById('logoPreview').src = e.target.result;
+      document.getElementById('logoEspejo').src = e.target.result;
     };
     reader.readAsDataURL(file);
-  });
-        camposEspejo.forEach(({ inputId, espejoId }) => {
-    const input = document.getElementById(inputId);
-    const espejo = document.getElementById(espejoId);
-    if (input && espejo) {
-      input.addEventListener("input", () => {
-        espejo.textContent = input.value;
-      });
-    }
-  });
+  }
+    
+  });      
 });     
 </script>
 </body>
