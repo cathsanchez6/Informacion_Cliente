@@ -255,10 +255,21 @@ h2 {
   resize: vertical;
 }
       .form-grid {
-    display: grid;
-    grid-template-columns: 1fr; /* Por defecto: apilado */
-    gap: 10px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        align-items: center;
+        flex-wrap: wrap;
+        border-radius: 6px;
+        gap: 10px;
   }
+    .form-grid input {
+  flex: 1;
+  min-width: 138px;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
     
 @media (max-width: 768px) {
   .formulario-grid {
