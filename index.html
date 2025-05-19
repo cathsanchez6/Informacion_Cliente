@@ -377,7 +377,6 @@ h2 {
     display: block;
   }
   .columna-espejo {
-  display: block;
   width: 100%;
   position: relative;
   background-color: #fff;
@@ -900,6 +899,9 @@ function cerrarEspejo() {
   </div>
 </div>
 <!-- Botón flotante de vista previa (solo en móviles) -->
+  <button class="boton-espejo" onclick="abrirEspejo()">
+  <i class="fas fa-eye"></i>
+</button>
 <button class="boton-espejo" onclick="mostrarEspejo()">👁️</button>
 
 
@@ -932,6 +934,16 @@ function cerrarEspejo() {
     }
   }
 </script>
+  <script>
+function abrirEspejo() {
+  document.querySelector('.columna-espejo').classList.add('modal-activo');
+}
+
+function cerrarEspejo() {
+  document.querySelector('.columna-espejo').classList.remove('modal-activo');
+}
+</script>
+
 
 </body>
 </html>
