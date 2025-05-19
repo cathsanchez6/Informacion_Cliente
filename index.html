@@ -853,36 +853,24 @@ function descargarLogo() {
 </script>
 
  <script>
-function mostrarModalEspejo() {
-  const modal = document.getElementById("modalEspejo");
-  const contenidoModal = document.getElementById("contenidoEspejoModal");
-  const columnaEspejo = document.querySelector(".columna-espejo");
-
-  // Clonar el contenido de la columna espejo
-  contenidoModal.innerHTML = "";
-  if (columnaEspejo) {
-    const clon = columnaEspejo.cloneNode(true);
-    clon.style.display = "block";
-    clon.style.backgroundImage = "none"; // evita fondo duplicado
-    contenidoModal.appendChild(clon);
-  }
-
-  modal.style.display = "block";
+function abrirEspejo() {
+  document.getElementById("modalEspejo").style.display = "block";
 }
 
-function cerrarModalEspejo() {
+function cerrarEspejo() {
   document.getElementById("modalEspejo").style.display = "none";
 }
+
 </script>
   
 <!-- Botón flotante para abrir el modal en pantallas pequeñas -->
-<button class="boton-espejo" onclick="mostrarModalEspejo()">
+<button class="boton-espejo" onclick="abrirEspejo()">
   <i class="fas fa-eye"></i>
 </button>
 <!-- Modal que muestra la columna espejo -->
 <div class="modal-espejo" id="modalEspejo">
   <div class="contenido-modal">
-    <span class="cerrar-modal" onclick="cerrarModalEspejo()">&times;</span>
+    <span class="cerrar-modal" onclick="cerrarEspejo()">&times;</span>
     <div id="contenidoEspejoModal">
       <!-- Aquí se clona la columna espejo -->
     </div>
