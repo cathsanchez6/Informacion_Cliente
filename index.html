@@ -437,13 +437,18 @@ h2 {
     max-width: 500px;
   }
   .form-grid {
-      grid-template-columns: 1fr !important;
+    grid-template-columns: 1fr !important;
+    width: 90%;
+    max-width: 500px;
     }
+    .form-grid {
+    flex-direction: column;
+    gap: 6px;
+  }
 
   .form-grid input {
-    width: 100%; 
-    padding: 8px;
-    box-sizing: border-box;
+    width: 100%;
+    min-width: unset;
   }
 
 }
