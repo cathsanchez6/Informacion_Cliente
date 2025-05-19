@@ -243,6 +243,21 @@ h2 {
       max-height: 83vh;
       border-radius: 10px;
 }
+    
+.boton-espejo {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  padding: 15px;
+  font-size: 20px;
+  z-index: 1000;
+}
+
     #sobre {
   text-align: justify;
   white-space: pre-wrap;
@@ -360,24 +375,11 @@ h2 {
     align-items: center;
     justify-content: center;
   }
-   .boton-espejo {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #057a55;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    font-size: 24px;
-    z-index: 1000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-    cursor: pointer;
-  }
+
+  .boton-espejo {
+      display: block;
+    }
+
      .columna-espejo {
     position: fixed;
     top: 0;
@@ -401,36 +403,33 @@ h2 {
 }
 
   .modal-espejo {
-    display: none;
-    position: fixed;
-    z-index: 1001;
-    left: 0;
-    top: 0;
-    width: 100vw;
-    height: 100vh;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.6);
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5);
   }
 
-  .contenido-modal {
-    background-color: white;
-    margin: 10% auto;
-    padding: 20px;
-    border-radius: 8px;
-    width: 90%;
-    max-width: 500px;
-    position: relative;
-  }
+.contenido-modal {
+  background-color: #fff;
+  margin: 10% auto;
+  padding: 20px;
+  width: 90%;
+  max-width: 500px;
+  border-radius: 8px;
+}
 
-  .cerrar-modal {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 28px;
-    font-weight: bold;
-    color: #333;
-    cursor: pointer;
-  }
+
+.cerrar-modal {
+  float: right;
+  font-size: 28px;
+  cursor: pointer;
+}
+
   .form-row {
     grid-template-columns: 1fr !important;
     width: 90%;
@@ -934,22 +933,19 @@ function cerrarEspejo() {
   </div>
 </div>
 <!-- Botón flotante de vista previa (solo en móviles) -->
-  <button class="boton-espejo" onclick="abrirEspejo()">
+<button class="boton-espejo" onclick="abrirEspejo()">
   <i class="fas fa-eye"></i>
 </button>
-<button class="boton-espejo" onclick="mostrarEspejo()">👁️</button>
 
-
-  <!-- Modal de vista previa -->
+<!-- Modal de vista previa -->
 <div class="modal-espejo" id="modalEspejo">
   <div class="contenido-modal">
-    <span class="cerrar-modal" onclick="cerrarModalEspejo()">&times;</span>
-    <div id="contenidoEspejoMobile">
+    <span class="cerrar-modal" onclick="cerrarEspejo()">&times;</span>
+    <div id="contenidoEspejoModal">
       <!-- Aquí se clona el contenido del espejo -->
     </div>
   </div>
-</div>
-  
+</div> 
 
   <script>
 
