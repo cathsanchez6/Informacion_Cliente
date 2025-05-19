@@ -126,6 +126,21 @@ label {
   border: 1px solid #ccc;
 }
 
+    .form-row-direcion {
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: 6px;
+  gap: 10px;
+}
+
+.form-row-direccion input {
+  flex: 1;
+  min-width: 120px;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
 .form-group input,
 .form-group textarea {
   width: 100%;
@@ -419,6 +434,11 @@ h2 {
     width: 90%;
     max-width: 500px;
   }
+  .form-row-direccion {
+    grid-template-columns: 1fr !important;
+    width: 180%;
+    max-width: 500px;
+  }
 }
 </style>
 </head>
@@ -533,7 +553,7 @@ h2 {
           <input type="text" id="nit">
         </div>
         <hr>
-        <div class="form-row" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items: center;">
+        <div class="form-row-direccion" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items: center;">
           <input type="text" id="direccion" placeholder="Dirección" style="width: 138px;">
           <input type="text" id="telefono" placeholder="Teléfono" style="width: 138px;">
           <input type="text" id="ciudad" placeholder="Ciudad" style="width: 138px; margin-right: 40px;" ></div>
