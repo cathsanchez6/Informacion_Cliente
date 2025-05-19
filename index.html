@@ -851,32 +851,43 @@ function descargarLogo() {
       }
     });
 </script>
-  <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const botonEspejo = document.getElementById("botonEspejo");
-    const modalEspejo = document.getElementById("modalEspejo");
-    const cerrarModal = modalEspejo.querySelector(".cerrar-modal");
-    const contenidoOriginal = document.querySelector(".columna-espejo");
-    const contenidoClonado = document.getElementById("contenidoEspejoClonado");
 
-    // Clona el contenido del espejo una vez
-    contenidoClonado.innerHTML = contenidoOriginal.innerHTML;
+ <script>
+function mostrarModalEspejo() {
+  const modal = document.getElementById("modalEspejo");
+  const contenidoModal = document.getElementById("contenidoEspejoModal");
+  const columnaEspejo = document.querySelector(".columna-espejo");
 
-    botonEspejo.addEventListener("click", () => {
-      modalEspejo.style.display = "block";
-    });
+  // Clonar el contenido de la columna espejo
+  contenidoModal.innerHTML = "";
+  if (columnaEspejo) {
+    const clon = columnaEspejo.cloneNode(true);
+    clon.style.display = "block";
+    clon.style.backgroundImage = "none"; // evita fondo duplicado
+    contenidoModal.appendChild(clon);
+  }
 
-    cerrarModal.addEventListener("click", () => {
-      modalEspejo.style.display = "none";
-    });
+  modal.style.display = "block";
+}
 
-    window.addEventListener("click", (event) => {
-      if (event.target === modalEspejo) {
-        modalEspejo.style.display = "none";
-      }
-    });
-  });
+function cerrarModalEspejo() {
+  document.getElementById("modalEspejo").style.display = "none";
+}
 </script>
+  
+<!-- Botón flotante para abrir el modal en pantallas pequeñas -->
+<button class="boton-espejo" onclick="mostrarModalEspejo()">
+  <i class="fas fa-eye"></i>
+</button>
+<!-- Modal que muestra la columna espejo -->
+<div class="modal-espejo" id="modalEspejo">
+  <div class="contenido-modal">
+    <span class="cerrar-modal" onclick="cerrarModalEspejo()">&times;</span>
+    <div id="contenidoEspejoModal">
+      <!-- Aquí se clona la columna espejo -->
+    </div>
+  </div>
+</div>
 
 </body>
 </html>
