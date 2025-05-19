@@ -254,6 +254,11 @@ h2 {
   padding: 10px;
   resize: vertical;
 }
+      .form-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Por defecto: apilado */
+    gap: 10px;
+  }
     
 @media (max-width: 768px) {
   .formulario-grid {
@@ -419,6 +424,15 @@ h2 {
     width: 90%;
     max-width: 500px;
   }
+  .form-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+  .form-grid input {
+    width: 100%; /* Que ocupe todo el ancho de su celda */
+    padding: 8px;
+    box-sizing: border-box;
+  }
 
 }
 </style>
@@ -535,13 +549,11 @@ h2 {
           <input type="text" id="nit">
         </div>
         <hr>
-            <div class="container mt-4">
-        <div class="form-grid">
-          <input type="text" id="direccion" placeholder="Dirección">
-          <input type="text" id="telefono" placeholder="Teléfono">
-          <input type="text" id="ciudad" placeholder="Ciudad">
-        </div>
-      </div>
+           <div class="form-grid">
+              <input type="text" id="direccion" placeholder="Dirección">
+              <input type="text" id="telefono" placeholder="Teléfono">
+              <input type="text" id="ciudad" placeholder="Ciudad">
+            </div>
 
           <button class="add-btn" onclick="agregarDireccion()" style="width: 100%; padding: 10px; display: flex; align-items: center; justify-content: center;">
             <img src="assets/cruz.svg" style="width: 16px; height: 16px; margin-right: 6px;">Agregar dirección
