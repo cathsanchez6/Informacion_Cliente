@@ -388,17 +388,22 @@ h2 {
     justify-content: center;
   }
 
-  .boton-espejo {
-      display: block;
-    }
   
-
 .boton-espejo {
-    display: none;
-    visibility: hidden;
-    opacity: 0;
+    display: block;
+    visibility: visible;
+    opacity: 1;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    padding: 15px;
+    font-size: 20px;
+    z-index: 1000;
   }
-
 
      .columna-espejo {
     position: fixed;
