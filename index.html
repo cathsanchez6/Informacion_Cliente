@@ -813,20 +813,29 @@ function descargarLogo() {
     document.getElementById('serialesOutput').textContent = seriales;
   }
 </script>
-    <script>
-      function agregarDireccion() {
-        const container = document.createElement("div");
-        container.className = "form-row";
-        container.innerHTML = 
-          <input type="text" placeholder="Dirección">
-          <input type="text" placeholder="Teléfono">
-          <input type="text" placeholder="Ciudad">
-          <button class="remove-btn" onclick="removeRow(this)">X</button>
-        ;
-        document.querySelector(".add-btn").before(container);
-      }
 
-  </script>  
+  <script>
+  function agregarDireccion() {
+    const container = document.createElement("div");
+    container.className = "form-row";
+
+    container.innerHTML = `
+      <input type="text" placeholder="Dirección" style="margin-right: 5px;" />
+      <input type="text" placeholder="Teléfono" style="margin-right: 5px;" />
+      <input type="text" placeholder="Ciudad" style="margin-right: 5px;" />
+      <button class="remove-btn" onclick="removeRow(this)" style="background-color: red; color: white; border: none; padding: 5px 10px;">X</button>
+    `;
+
+    // Insertar antes del botón de agregar dirección
+    document.querySelector(".add-btn").before(container);
+  }
+
+  function removeRow(button) {
+    // Elimina el contenedor que contiene los inputs
+    button.parentElement.remove();
+  }
+</script>
+
    <script>
   // Actualización de campos en tiempo real - formulario espejo 
      document.addEventListener("DOMContentLoaded", function () {
