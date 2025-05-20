@@ -281,7 +281,8 @@ h2 {
         border-radius: 6px;
         gap: 10px;
         margin-right: 100px; 
-  }
+      }
+
     .form-grid input {
   flex: 1;
   min-width: 138px;
@@ -306,21 +307,33 @@ h2 {
   font-size: 14px;
   padding: 10px;
 }
-
 .direccion-container {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  margin-top: 10px;
-  width: 100%;
 }
 
-.direccion {
+.bloque-direccion {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+}
+
+.bloque-direccion input {
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 5px;
   width: 100%;
   box-sizing: border-box;
+}
+
+.btn-eliminar {
+  background-color: transparent;
+  border: none;
+  color: red;
+  font-size: 18px;
+  cursor: pointer;
 }
 
     
@@ -629,17 +642,19 @@ h2 {
           <input type="text" id="nit">
         </div>
         <hr>
-         <div class="form-grid">
+        <div class="form-grid">
             <input type="text" id="direccion" placeholder="Dirección">
             <input type="text" id="telefono" placeholder="Teléfono">
             <input type="text" id="ciudad" placeholder="Ciudad">
           </div>
           
+          <!-- Contenedor para las nuevas direcciones -->
           <div id="contenedorDirecciones" class="direccion-container"></div>
           
           <button class="add-btn" onclick="agregarDireccion()" style="width: 100%; padding: 10px; display: flex; align-items: center; justify-content: center;">
             <img src="assets/cruz.svg" style="width: 16px; height: 16px; margin-right: 6px;">Agregar dirección
           </button>
+
 
       </div>
         <hr>
@@ -909,33 +924,40 @@ function descargarLogo() {
 function agregarDireccion() {
   const contenedor = document.getElementById("contenedorDirecciones");
 
-  const nuevoGrupo = document.createElement("div");
-  nuevoGrupo.className = "form-group";
+  // Crear contenedor del bloque completo
+  const bloque = document.createElement("div");
+  bloque.className = "bloque-direccion";
 
-  const label = document.createElement("label");
-  label.textContent = "Dirección adicional";
+  // Inputs
+  const inputDireccion = document.createElement("input");
+  inputDireccion.type = "text";
+  inputDireccion.placeholder = "Dirección";
 
-  const input = document.createElement("input");
-  input.type = "text";
-  input.name = "direccion[]";
-  input.className = "direccion";
+  const inputTelefono = document.createElement("input");
+  inputTelefono.type = "text";
+  inputTelefono.placeholder = "Teléfono";
 
-  nuevoGrupo.appendChild(label);
-  nuevoGrupo.appendChild(input);
-  contenedor.appendChild(nuevoGrupo);
+  const inputCiudad = document.createElement("input");
+  inputCiudad.type = "text";
+  inputCiudad.placeholder = "Ciudad";
 
-  // Espejo (opcional)
-  const espejoContenedor = document.getElementById("espejoDirecciones");
-  const nuevaDireccionEspejo = document.createElement("div");
-  nuevaDireccionEspejo.classList.add("direccion-espejo");
-  espejoContenedor?.appendChild(nuevaDireccionEspejo);
+  // Botón eliminar
+  const btnEliminar = document.createElement("button");
+  btnEliminar.innerHTML = "🗑️";
+  btnEliminar.className = "btn-eliminar";
+  btnEliminar.onclick = () => contenedor.removeChild(bloque);
 
-  input.addEventListener("input", function () {
-    nuevaDireccionEspejo.textContent = input.value;
-  });
+  // Agregar al bloque
+  bloque.appendChild(inputDireccion);
+  bloque.appendChild(inputTelefono);
+  bloque.appendChild(inputCiudad);
+  bloque.appendChild(btnEliminar);
+
+  // Agregar al contenedor
+  contenedor.appendChild(bloque);
 }
-
 </script>
+
 
    <script>
   // Actualización de campos en tiempo real - formulario espejo 
