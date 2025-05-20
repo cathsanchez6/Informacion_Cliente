@@ -813,17 +813,17 @@ function descargarLogo() {
     document.getElementById('serialesOutput').textContent = seriales;
   }
 </script>
-  <script>
+    <script>
       function agregarDireccion() {
         const container = document.createElement("div");
         container.className = "form-row";
-        container.innerHTML = `
+        container.innerHTML = 
           <input type="text" placeholder="Dirección">
           <input type="text" placeholder="Teléfono">
           <input type="text" placeholder="Ciudad">
-          document.querySelector(".add-btn").before(container);
-        `;
-        <button class="remove-btn" onclick="removeRow(this)">X</button> 
+          <button class="remove-btn" onclick="removeRow(this)">X</button>
+        ;
+        document.querySelector(".add-btn").before(container);
       }
 
   </script>  
