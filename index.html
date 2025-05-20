@@ -281,8 +281,7 @@ h2 {
         border-radius: 6px;
         gap: 10px;
         margin-right: 100px; 
-      }
-
+  }
     .form-grid input {
   flex: 1;
   min-width: 138px;
@@ -296,45 +295,7 @@ h2 {
   opacity: 0;
   display: none !important;
 }
-        .columna-derecha,
-  .columna-izquierda,
-  .form-group input,
-  .form-row input {
-    min-width: 0;
-  }
-#crearBtn {
-  width: 100% !important;
-  font-size: 14px;
-  padding: 10px;
-}
-.direccion-container {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
 
-.bloque-direccion {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr) auto;
-  gap: 10px;
-  align-items: center;
-}
-
-.bloque-direccion input {
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.btn-eliminar {
-  background-color: transparent;
-  border: none;
-  color: red;
-  font-size: 18px;
-  cursor: pointer;
-}
 
     
 @media (max-width: 768px) {
@@ -504,27 +465,18 @@ h2 {
     max-width: 500px;
   }
   .form-grid {
-    flex-direction: column;
-    gap: 6px;
     grid-template-columns: 1fr !important;
     width: 80%;
     max-width: 500px;
     }
-
+    .form-grid {
+    flex-direction: column;
+    gap: 6px;
+  }
 
   .form-grid input {
     width: 100%;
     min-width: unset;
-  }
-    .columna-derecha,
-  .columna-izquierda {
-    flex: 1 1 100%;
-    width: 100% !important;
-    padding: 10px;
-  }
-  .formulario-grid-espejo {
-    grid-template-columns: 1fr;
-    height: auto;
   }
 
 }
@@ -642,20 +594,15 @@ h2 {
           <input type="text" id="nit">
         </div>
         <hr>
-        <div class="form-grid">
-            <input type="text" id="direccion" placeholder="Dirección">
-            <input type="text" id="telefono" placeholder="Teléfono">
-            <input type="text" id="ciudad" placeholder="Ciudad">
-          </div>
-          
-          <!-- Contenedor para las nuevas direcciones -->
-          <div id="contenedorDirecciones" class="direccion-container"></div>
-          
+           <div class="form-grid">
+              <input type="text" id="direccion" placeholder="Dirección">
+              <input type="text" id="telefono" placeholder="Teléfono">
+              <input type="text" id="ciudad" placeholder="Ciudad">
+            </div>
+
           <button class="add-btn" onclick="agregarDireccion()" style="width: 100%; padding: 10px; display: flex; align-items: center; justify-content: center;">
             <img src="assets/cruz.svg" style="width: 16px; height: 16px; margin-right: 6px;">Agregar dirección
           </button>
-
-
       </div>
         <hr>
       <div class="contenedor">
@@ -920,45 +867,22 @@ function descargarLogo() {
     reader.readAsDataURL(logoFile); // Convierte logo a Base64
   }
 </script>
-<script>
-function agregarDireccion() {
-  const contenedor = document.getElementById("contenedorDirecciones");
+  <script>
+      function agregarDireccion() {
+        const container = document.createElement("div");
+        container.className = "form-row";
+        container.innerHTML = `
+          <input type="text" placeholder="Dirección">
+          <button class="remove-btn" onclick="removeRow(this)">X</button>
+          <input type="text" placeholder="Teléfono">
+          <button class="remove-btn" onclick="removeRow(this)">X</button>
+          <input type="text" placeholder="Ciudad">
+          <button class="remove-btn" onclick="removeRow(this)">X</button>
+        `;
+        document.querySelector(".add-btn").before(container);
+      }
 
-  // Crear contenedor del bloque completo
-  const bloque = document.createElement("div");
-  bloque.className = "bloque-direccion";
-
-  // Inputs
-  const inputDireccion = document.createElement("input");
-  inputDireccion.type = "text";
-  inputDireccion.placeholder = "Dirección";
-
-  const inputTelefono = document.createElement("input");
-  inputTelefono.type = "text";
-  inputTelefono.placeholder = "Teléfono";
-
-  const inputCiudad = document.createElement("input");
-  inputCiudad.type = "text";
-  inputCiudad.placeholder = "Ciudad";
-
-  // Botón eliminar
-  const btnEliminar = document.createElement("button");
-  btnEliminar.innerHTML = "🗑️";
-  btnEliminar.className = "btn-eliminar";
-  btnEliminar.onclick = () => contenedor.removeChild(bloque);
-
-  // Agregar al bloque
-  bloque.appendChild(inputDireccion);
-  bloque.appendChild(inputTelefono);
-  bloque.appendChild(inputCiudad);
-  bloque.appendChild(btnEliminar);
-
-  // Agregar al contenedor
-  contenedor.appendChild(bloque);
-}
-</script>
-
-
+  </script>  
    <script>
   // Actualización de campos en tiempo real - formulario espejo 
      document.addEventListener("DOMContentLoaded", function () {
