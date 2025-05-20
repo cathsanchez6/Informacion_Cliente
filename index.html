@@ -272,16 +272,15 @@ h2 {
   padding: 10px;
   resize: vertical;
 }
-      .form-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 10px;
-        align-items: center;
-        flex-wrap: wrap;
-        border-radius: 6px;
-        gap: 10px;
-        margin-right: 100px; 
-  }
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  align-items: center;
+  border-radius: 6px;
+  width: 100%;         
+  box-sizing: border-box;
+}
     .form-grid input {
   flex: 1;
   min-width: 138px;
@@ -464,13 +463,12 @@ h2 {
     width: 80%;
     max-width: 500px;
   }
-.form-grid {
-  display: grid;            
-  grid-template-columns: 1fr !important; 
-  gap: 6px;                  
-  width: 80%;
-  max-width: 500px;
-}
+  .form-grid {
+    grid-template-columns: 1fr !important;
+    width: 100%;
+    max-width: 100%;
+    margin-right: 0;  
+  }
 
 .form-grid input {
   width: 100%;
